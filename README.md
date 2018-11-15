@@ -14,4 +14,4 @@ Members:
 
 • Παναγοπούλου Άννα 03114130 pan.anna.1996@gmail.com
 
-• Τσάκο Μάριους 03114122 marios.cako@gmail.com
+• Τσάκο Μαριούς 03114122 marios.cako@gmail.com
