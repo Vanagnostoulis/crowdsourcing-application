@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" type="text/css" href="/css/user.css">
+<link rel="stylesheet" type="text/css" href="../public/css/user.css">
+<link href='http://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
+</head>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script></script>
+<body>
+<div class="topnav">
+	<a href='#login.html'> <img src="kava.png" style="width:120px; height:50px; padding: 0px 16px"></img> </a>
+	<a href=# id = profileImage></a>
+	<a id= "welcome" href="#" >
+    </a>
+</div>
+<script>
+$(document).ready(function(){
+  const username = "<%= username %>".charAt(0).toUpperCase() + "<%= username %>".substr(1).toLowerCase(); 
+  document.getElementById("welcome").innerHTML = "Καλωσόρισες, " + username +"!";
+  var profileImage = $('#profileImage').text(username.charAt(0));
+});
+</script>
+<p class='catch-phrase'> Never have i ever... </p>
+<div class="search-container">
+	<form action="/" method="post">
+		<button type="submit"><i class="fa fa-search"></i></button>
+    	<input type="text" placeholder="Αναζήτηση..." name="search" id="search-box"  onclick="document.getElementById('search-box').style.borderColor='#668cff';"> 	
+    </form>
+</div>
+
+<script>
+var search = document.getElementById("search-box");
+
+window.onclick = function(event) {
+	if (event.target != search) {
+       document.getElementById('search-box').style.borderColor='#888' 
+    }
+}
+</script>  
+
+</body>
+
+</html>
