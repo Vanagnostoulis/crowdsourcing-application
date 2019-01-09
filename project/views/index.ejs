@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" type="text/css" href="/css/login.css">
+<link href='http://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
+</head>
+
+
+<body>
+<div class="topnav">
+	<a href='#login.html'> <img src="kava.png" style="width:120px; height:50px; padding: 0px 16px"></img> </a>
+	<a class="log-reg" href="#" onclick="document.getElementById('register').style.display='block'">
+    Εγγραφή
+    </a>
+    <a class="log-reg" href="#" onclick="document.getElementById('login').style.display='block'">
+    Είσοδος
+    </a>
+</div>
+<p class='catch-phrase'> Never have i ever... </p>
+<div class="search-container">
+	<form action="/" method="post">
+		<button type="submit"><i class="fa fa-search"></i></button>
+    	<input type="text" placeholder="Αναζήτηση..." name="search" id="search-box"  onclick="document.getElementById('search-box').style.borderColor='#668cff';"> 	
+    </form>
+</div>
+  
+<div id="login" class="modal"> 
+  <form class="modal-content animate" action="/login" method="post">
+    <div class="container">
+      <label for="header_login" ><p style="text-align:center; font-size: 17px;"><b style="border-bottom: 3px solid #009999;"> Είσοδος </b></p></label>
+      <input type="text" id="user" placeholder="Όνομα Χρήστη ή Email" style="font-family:Arial, FontAwesome" onclick="document.getElementById('user').style.borderColor='#668cff';" name="uname" required>
+      <i class="fa fa-user fa-all"></i>
+      <input type="password" id="psw" placeholder="Συνθηματικό" style="font-family:Arial, FontAwesome" onclick="document.getElementById('psw').style.borderColor='#668cff';" name="psw" required>  
+      <i class="fa fa-lock fa-all"></i>
+      <button type="submit" class="loginbtn" style="font-family:Arial, FontAwesome"><b>Είσοδος</b></button>
+      	<div class="col"> 
+			<a href="/auth/facebook" class="fb social_btn">
+    			<i class="fa fa-facebook fa-fw"></i> 
+        	</a>
+        	<a href="#" class="twitter social_btn">
+          		<i class="fa fa-twitter fa-fw"></i> 
+        	</a>
+        	<a href="#" class="google social_btn">
+        		<i class="fa fa-google fa-fw"></i> 
+        	</a>
+		</div>
+    	<div>
+      		<label>
+        		<input type="checkbox" checked="checked" name="remember" style="font-family:Arial, FontAwesome"> Να με θυμάσαι
+      		</label>
+    	</div>
+    	<% if(authentication_failed !== null){ %>
+  			<p class="error"><b><%= authentication_failed %></b></p>
+	<% } %>
+    </div>
+	
+    <div class="container" style="background-color:#e1e1e1">
+      <button type="button" onclick="document.getElementById('login').style.display='none'" class="cancelbtn"><i class="fa fa-arrow-left"></i>  Πίσω </button>
+      <span class="psw"><a href="#">Ξέχασες τον κωδικό;</a></span>
+    </div>
+  </form>
+</div>
+
+
+<div id="register" class="modal"> 
+  <form class="modal-content animate" action="/register" method="post">
+	<div class="container">
+    	<label for="header_signup"><p style="text-align:center; font-size: 17px; font: cursive;"><b style="border-bottom: 3px solid #009999;"> Εγγραφή </b></p></label>
+
+	  		<input type="text" id="email-reg" placeholder="Email" style="font-family:Arial, FontAwesome" onclick="document.getElementById('email-reg').style.borderColor='#668cff';" name="email" required>
+
+	  	<i class="fa fa-envelope fa-all" style="font-size:14px;"></i>
+      	<input type="password" id="pass-reg" placeholder="Συνθηματικό" style="font-family:Arial, FontAwesome" onclick="document.getElementById('pass-reg').style.borderColor='#668cff';" name="pass_reg" required>
+      	<i class="fa fa-lock fa-all"></i>
+      	<input type="password" id="repass-reg" placeholder="Επαναλάβατε το συνθηματικό" style="font-family:Arial, FontAwesome" onclick="document.getElementById('repass-reg').style.borderColor='#668cff';"  name="repass_reg" required>
+      	<i class="fa fa-lock fa-all"></i>
+      	<input type="text" id="user-reg" placeholder="Πώς να σας φωναζουμε;" style="font-family:Arial, FontAwesome" onclick="document.getElementById('user-reg').style.borderColor='#668cff';" name="reg_uname" required>
+     	<i class="fa fa-user fa-all"></i>  
+     	<% if(error_user_exist !== null){ %>
+  			<p class="error"><b><%= error_user_exist %></b></p>
+		<% } %>
+		
+		<% if(password_mismatch !== null){ %>
+  			<p class="error"><b><%= password_mismatch %></b></p>
+		<% } %>
+     	<p style="font-size:13px;">Πατώντας εγγραφή αποδέχεσαι τους <a href="#">όρους χρήσης</a>.</p> 
+      	<button type="submit" class="loginbtn"><b>Εγγραφή</b></button>
+      	<div class="col"> 
+			<a href="/auth/facebook" class="fb social_btn">
+    			<i class="fa fa-facebook fa-fw"></i> 
+        	</a>
+        	<a href="#" class="twitter social_btn">
+          		<i class="fa fa-twitter fa-fw"></i> 
+        	</a>
+        	<a href="#" class="google social_btn">
+        		<i class="fa fa-google fa-fw"></i> 
+        	</a>
+		</div>
+	</div>
+	<div class="container" style="background-color:#f1f1f1">
+    	<button type="button" onclick="document.getElementById('register').style.display='none'" class="cancelbtn"><i class="fa fa-arrow-left"></i> Πίσω</button>
+	</div>
+  </form>
+</div>
+
+
+
+<% if(error_user_exist !== null){
+	%> <script> 
+		document.getElementById('register').style.display='block'; 
+		document.getElementById('email-reg').style.borderColor='#b30000'
+	</script> <%
+} %>
+
+<% if(password_mismatch !== null){
+	%> <script>
+		document.getElementById('register').style.display='block';  
+		document.getElementById('pass-reg').style.borderColor='#b30000'
+		document.getElementById('repass-reg').style.borderColor='#b30000'
+	</script> <%
+} %>
+
+<% if(authentication_failed !== null){
+	%> <script> 
+		document.getElementById('login').style.display='block'; 
+		document.getElementById('psw').style.borderColor='#b30000'
+		document.getElementById('user').style.borderColor='#b30000'
+	</script> <%
+} %>
+<script>
+// Get the modal
+var login = document.getElementById('login');
+var register = document.getElementById('register');
+var search = document.getElementById("search-box");
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+    if ((event.target == login) || (event.target == register)) {
+        login.style.display = "none";
+        register.style.display = "none";
+    }
+    
+    if (event.target != search) {
+       document.getElementById('search-box').style.borderColor='#888' 
+    }
+    /* Login fields */
+    if (event.target != document.getElementById("user")) {
+    	document.getElementById('user').style.borderColor='#ccc'
+    }
+    if (event.target != document.getElementById("psw")) {
+    	document.getElementById('psw').style.borderColor='#ccc'
+    }
+    
+    var error_user_exist = "<%= error_user_exist %>"
+	
+    /* Signup fields */
+    if (event.target != document.getElementById("email-reg")) {
+    	if(error_user_exist == "") 
+    		document.getElementById('email-reg').style.borderColor='#ccc'
+    	else /* tried to register with an existing acount */
+    		document.getElementById('email-reg').style.borderColor='#b30000'
+    }
+    var pd_error = "<%= password_mismatch %>"
+    if (event.target != document.getElementById("pass-reg")) {
+    	if(pd_error == "")
+    		document.getElementById('pass-reg').style.borderColor='#ccc'
+    	else
+    		document.getElementById('pass-reg').style.borderColor='#b30000'
+    }
+    if (event.target != document.getElementById("repass-reg")) {
+    	if(pd_error == "")
+    		document.getElementById('repass-reg').style.borderColor='#ccc'
+    	else
+    		document.getElementById('repass-reg').style.borderColor='#b30000'
+    }
+    if (event.target != document.getElementById("user-reg")) {
+    	document.getElementById('user-reg').style.borderColor='#ccc'
+    }
+}
+</script>
+</body>
+
+</html>
