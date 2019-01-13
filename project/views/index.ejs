@@ -10,7 +10,7 @@
 
 <body>
 <div class="topnav">
-	<a href='#login.html'> <img src="kava.png" style="width:120px; height:50px; padding: 0px 16px"></img> </a>
+	<a href='#login.html'> <img src="img/kava.png" style="width:120px; height:50px; padding: 0px 16px"></img> </a>
 	<a class="log-reg" href="#" onclick="document.getElementById('register').style.display='block'">
     Εγγραφή
     </a>
@@ -20,7 +20,7 @@
 </div>
 <p class='catch-phrase'> Never have i ever... </p>
 <div class="search-container">
-	<form action="/" method="post">
+	<form action="/search" method="post">
 		<button type="submit"><i class="fa fa-search"></i></button>
     	<input type="text" placeholder="Αναζήτηση..." name="search" id="search-box"  onclick="document.getElementById('search-box').style.borderColor='#668cff';"> 	
     </form>
@@ -88,7 +88,7 @@
      	<p style="font-size:13px;">Πατώντας εγγραφή αποδέχεσαι τους <a href="#">όρους χρήσης</a>.</p> 
       	<button type="submit" class="loginbtn"><b>Εγγραφή</b></button>
       	<div class="col"> 
-			<a href="/auth/facebook" class="fb social_btn">
+			<a href="/reg/facebook" class="fb social_btn">
     			<i class="fa fa-facebook fa-fw"></i> 
         	</a>
         	<a href="#" class="twitter social_btn">
@@ -183,3 +183,4 @@ window.onclick = function(event) {
 </body>
 
 </html>
+
