@@ -35,6 +35,16 @@ app.get('/', function (req, res) {
 require('./node/login.js')(app, con, bcrypt)
 require('./node/register.js')(app, con, bcrypt)
 require('./node/facebook.js')(app) /* login and register with fb */
+require('./RESTfulAPI/Products/GetProducts.js')(app,con)
+require('./RESTfulAPI/Products/DeleteProducts.js')(app,con)
+require('./RESTfulAPI/Products/PostProducts.js')(app,con)
+require('./RESTfulAPI/Products/PutProducts.js')(app,con)
+require('./RESTfulAPI/Products/PatchProducts.js')(app,con)
+require('./RESTfulAPI/Shops/GetShops.js')(app,con)
+require('./RESTfulAPI/Shops/DeleteShops.js')(app,con)
+require('./RESTfulAPI/Shops/PostShops.js')(app,con)
+require('./RESTfulAPI/Shops/PutShops.js')(app,con)
+require('./RESTfulAPI/Shops/PatchShops.js')(app,con)
 
 app.listen(3000, function () {
   console.log('Example app listening on port 3000!')
