@@ -45,6 +45,7 @@ require('./RESTfulAPI/Shops/DeleteShops.js')(app,con)
 require('./RESTfulAPI/Shops/PostShops.js')(app,con)
 require('./RESTfulAPI/Shops/PutShops.js')(app,con)
 require('./RESTfulAPI/Shops/PatchShops.js')(app,con)
+require('./RESTfulAPI/Prices/GetPrices.js')(app,con)
 
 app.listen(3000, function () {
   console.log('Example app listening on port 3000!')
