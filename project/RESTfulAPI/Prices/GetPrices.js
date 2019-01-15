@@ -93,12 +93,18 @@ module.exports = function (app,con){
 			  		if (queryArgs[0] == 'price')
 			  			queryArgs[0] = 'Price';
 					else 
-						queryArgs[0] = 'Finish_Day'
-
-					sql = "Select * from Store, Store_Address, Drinks where (Store.Store_Id BETWEEN " + start +" AND " + offset +
-						  ") AND (Store_Address.Store_Id BETWEEN " + start + " AND " + offset +
-						  ") AND (Store.Store_Id = Store_Address.Store_Id) AND (Drinks.Drink_Id BETWEEN " +start+ " AND " + offset +
-						  ") ORDER BY Drinks." +queryArgs[0]+ " " + queryArgs[1] + ";";
+						queryArgs[0] = 'Finish_Day'	
+					
+					if (dateTo)
+							sql = "(SELECT * FROM Store, Store_Address, Drinks WHERE (Store.Store_Id = Store_Address.Store_Id)" +
+							" AND (Drinks.Store_Id = Store.Store_Id )AND (Drinks.Start_Day > '"+ dateFrom+ 
+							"') ORDER BY Drinks." +queryArgs[0]+ " " + queryArgs[1] + ") LIMIT " +start+ " , " + offset + ";";
+					else
+							sql = "(SELECT * FROM Store, Store_Address, Drinks WHERE (Store.Store_Id = Store_Address.Store_Id)" +
+							" AND (Drinks.Store_Id = Store.Store_Id ) AND (Drinks.Start_Day > '"+ dateFrom+ 
+							"') AND (Finish_Day <= '"+ dateTo+"') ORDER BY Drinks." +queryArgs[0]+ " " 
+							+ queryArgs[1] + ") LIMIT " +start+ " , " + offset + ";";
+					
 					console.log("CASE WITH NO GEOFLAG FOR GET PRICES");
 					console.log(sql);
 					con.query(sql, function (err, result) {
@@ -120,42 +126,81 @@ module.exports = function (app,con){
 						}
 						res.send(JSON.stringify({ start: start, count: count, total: total ,prices: arr} , null, 200));
 				  	});
-				}
+				} 
 			}
 			// if geo is given 
 			else
 			{
-				
-			}
+				// find value of total shops. Case 1 search from today, Case 2 search from today until dateTo
+				if (dateTo)
+					sql = " SELECT COUNT (Drink_Id) AS totalCount FROM Drinks WHERE (Start_Day > '"+ dateFrom+ "');";
+			  	else
+					sql = " SELECT COUNT (Drink_Id) AS totalCount FROM Drinks WHERE (Start_Day > '"+ dateFrom+ "' AND Finish_Day <= '"+ dateTo+"');";
+			  	console.log("SQL FOR TOTAL");
+			  	console.log(sql);
+			  	con.query(sql, function (err, rows) {
+			  	 	total = rows[0].totalCount;
+			  	});
 
+				// fix the query arguments
+			  	offset = start + count - 1;
+			  	queryArgs = sort.split("|");
+		  		if (queryArgs[0] == 'price')
+		  			queryArgs[0] = 'Price';
+				else if (queryArgs[0] == 'geoDist')
+					queryArgs[0] = 'distance'
+				else 
+					queryArgs[0] = 'Finish_Day'
 
-		/* total product	
-			sql = " SELECT COUNT (Store_Id) AS totalCount FROM Store";
-		  	con.query(sql, function (err, rows) {
-		  	 	total = rows[0].totalCount;
-		  	});
-	
-			con.query(sql, function (err, result) {
-		  	 	if (err) throw err;
-				console.log(result);
-
-				var i;
-				var arr =[];
-				var len =result.length;
-				for (i = 0; i < len; i++) { 
-					arr.push({
-						price: result[i].Price,
-						date: result[i].Finish_Day, 
-						productName: result[i].Marka + ,
-						productId: result[i].Drink_Id, 
-						shopId: result[i].Store_Id,
-						shopName: result[i].Name,
-						shopsAddress: [result[i].Street + ' ' + result[i].Num + ", " + result[i].Postal_Code + ", " + result[i].Region,
-					});
+				if (queryArgs[0] = 'distance'){
+					if (dateTo)
+						sql = "(SELECT * , (st_distance_sphere(Point("+geoLng+","+geoLat+"), Point(Store.Longtitude,Store.Latitude))) AS distance " +
+							"FROM Store ,Store_Address, Drinks  WHERE (Store.Store_Id = Store_Address.Store_Id)" +
+							" AND (Drinks.Store_Id = Store.Store_Id )AND (Drinks.Start_Day > '"+ dateFrom+ 
+							"')  HAVING distance < " +geoDist+" ORDER BY distance "+ queryArgs[1]+" ) LIMIT " +start+ " , " + offset + ";";
+					else
+						sql = "(SELECT * , (st_distance_sphere(Point("+geoLng+","+geoLat+"), Point(Store.Longtitude,Store.Latitude))) AS distance " +
+							"FROM Store ,Store_Address, Drinks  WHERE (Store.Store_Id = Store_Address.Store_Id)" +
+							" AND (Drinks.Store_Id = Store.Store_Id ) AND (Drinks.Start_Day > '"+ dateFrom+ 
+							"')  AND (Finish_Day <= '"+ dateTo+ "') HAVING distance < " +geoDist+
+							" ORDER BY distance "+ queryArgs[1]+") LIMIT " +start+ " , " + offset + ";";
 				}
-			res.send(JSON.stringify({ start: start, count: count, total: total ,shops: arr} , null, 200));
-		  	});
-		  	*/
+				else
+				{
+					if (dateTo)
+						sql = "(SELECT * , (st_distance_sphere(Point("+geoLng+","+geoLat+"), Point(Store.Longtitude,Store.Latitude))) AS distance " +
+							"FROM Store ,Store_Address, Drinks  WHERE (Store.Store_Id = Store_Address.Store_Id)" +
+							" AND (Drinks.Store_Id = Store.Store_Id ) AND (Drinks.Start_Day > '"+ dateFrom+ 
+							"')  HAVING distance < " +geoDist+" ORDER BY Drinks."+queryArgs[0]+ " " +queryArgs[1]+ ") LIMIT " +start+ " , " + offset + ";";
+					else
+						sql = "(SELECT * , (st_distance_sphere(Point("+geoLng+","+geoLat+"), Point(Store.Longtitude,Store.Latitude))) AS distance " +
+							"FROM Store ,Store_Address, Drinks  WHERE (Store.Store_Id = Store_Address.Store_Id)" +
+							" AND (Drinks.Store_Id = Store.Store_Id ) AND (Drinks.Start_Day > '"+ dateFrom+ 
+							"')  AND (Finish_Day <= '"+ dateTo+ "') HAVING distance < " +geoDist+
+							" ORDER BY Drinks."+queryArgs[0]+ " " +queryArgs[1]+ ") LIMIT " +start+ " , " + offset + ";";
+				}
+				console.log("CASE WITH NO GEOFLAG FOR GET PRICES");
+				console.log(sql);
+				con.query(sql, function (err, result) {
+			  	 	if (err) throw err;
+					//console.log(result);
+					var i;
+					var arr =[];
+					var len =result.length;
+					for (i = 0; i < len; i++) { 
+						arr.push({
+							price: result[i].Price,
+							date: result[i].Finish_Day.toISOString().slice(0, 10).replace('T', ' '), 
+							productName: result[i].Marka,
+							productId: result[i].Drink_Id, 
+							shopId: result[i].Store_Id,
+							shopName: result[i].Name,
+							shopsAddress: result[i].Street + ' ' + result[i].Num + ", " + result[i].Postal_Code + ", " + result[i].Region
+						});
+					}
+					res.send(JSON.stringify({ start: start, count: count, total: total ,prices: arr} , null, 200));
+			  	});
+			}
 		}
 	});
 }
