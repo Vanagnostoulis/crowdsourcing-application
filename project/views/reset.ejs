@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" type="text/css" href="/css/user.css">
+<link rel="stylesheet" type="text/css" href="../public/css/user.css">
+<link href='http://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
+</head>
+<body>
+
+<div class="row">
+	<div class="col-md-12">
+		<form action="/reset/<%= token %>" method="POST">
+		  <legend>Reset Password</legend>
+		  <div class="form-group">
+		    <label for="password">New Password</label>
+		    <input type="password" name="pass_reg" required value="" placeholder="New password" autofocus="autofocus" class="form-control"/>
+		  </div>
+		  <div class="form-group">
+		    <label for="confirm">Confirm Password</label>
+		    <input type="password" name="repass_reg" required value="" placeholder="Confirm password" class="form-control"/>
+		  </div>
+		  <div class="form-group">
+		    <button type="submit" class="btn btn-primary">Update Password</button>
+		  </div>
+		</form>
+	</div>
+</div>
+
+</body>
+</html>
+
+
+
+
