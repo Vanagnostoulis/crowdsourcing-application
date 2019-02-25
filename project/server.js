@@ -3,9 +3,10 @@ const app = express() 						/* for catching get and post methods */
 const bodyParser = require('body-parser');	/* for passing variables to client */
 const bcrypt = require('bcrypt');     /* for password encryption */
 const config = require('./configuration/config');
-var async = require("async");
-var nodemailer = require("nodemailer");
-var crypto = require("crypto");
+const cookieParser = require('cookie-parser');
+const async = require("async");
+const nodemailer = require("nodemailer");
+const crypto = require("crypto");
 
 /* Connect to mysql */
 app.use(cookieParser());
@@ -54,7 +55,7 @@ app.get('/', authenticationMiddleware, async function(req, res) {
 
 })
 
-require('./password_reset.js')(app, con, bcrypt,async,crypto,nodemailer)
+require('./node/authentication/password_reset.js')(app, con, bcrypt,async,crypto,nodemailer)
 require('./node/authentication/login.js')(app, con, bcrypt)
 require('./node/authentication/register.js')(app, con, bcrypt)
 require('./node/authentication/facebook.js')(app) /* login and register with fb */
