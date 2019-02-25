@@ -1,6 +1,8 @@
 #! /bin/bash
 
+npm install --save nodemailer
 npm install --save express
+npm install --save async
 npm install --save body-parser
 npm install --save bcrypt
 npm install --save mysql
