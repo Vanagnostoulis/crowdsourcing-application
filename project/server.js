@@ -1,13 +1,14 @@
-const express = require('express') /* basic app for interaction client - server */
-const app = express() /* for catching get and post methods */
-const bodyParser = require('body-parser'); /* for passing variables to client */
-const bcrypt = require('bcrypt'); /* for password encryption */
+const express = require('express')			/* basic app for interaction client - server */
+const app = express() 						/* for catching get and post methods */
+const bodyParser = require('body-parser');	/* for passing variables to client */
+const bcrypt = require('bcrypt');     /* for password encryption */
 const config = require('./configuration/config');
 const cookieParser = require('cookie-parser');
+const async = require("async");
+const nodemailer = require("nodemailer");
+const crypto = require("crypto");
 
-
-
-
+/* Connect to mysql */
 app.use(cookieParser());
 
 /*SXOLIO GIA AUTHORIZATION:
@@ -15,7 +16,6 @@ Geia na deis, mesa se kapoio arxeio, an enas user einai tautopoihmenos
 alla kai ti permission exei prepei na kaneis
 const cookieParser = require('cookie-parser');
 app.use(cookieParser());
-
 twra elegxeis an einai  sundedemenos me thn sunthhkh:
 if (req.cookies && req.cookies.userData )
 to username to pairneis ap to req.cookies.userData.user
@@ -45,8 +45,8 @@ app.set('view engine', 'ejs') /* use embedded javascript to communicate with cli
 
 /* get method -- request and respond */
 app.get('/', authenticationMiddleware, async function(req, res) {
-  /* upload index.ejs to some port (8888 look at the end) */
-  /* open on localhost:8888/ */
+  /* upload index.ejs to some port (3000look at the end) */
+  /* open on localhost:3000/ */
 
   res.render('user', {
     username: req.cookies.userData.user
@@ -55,9 +55,11 @@ app.get('/', authenticationMiddleware, async function(req, res) {
 
 })
 
+require('./node/authentication/password_reset.js')(app, con, bcrypt,async,crypto,nodemailer)
 require('./node/authentication/login.js')(app, con, bcrypt)
 require('./node/authentication/register.js')(app, con, bcrypt)
-require('./node/authentication/facebook.js')(app) /* login and register with fb */
+require('./node/authentication/facebook.js')(app, con)            /* login and register with fb */
+
 require('./RESTfulAPI/Products/GetProducts.js')(app, con)
 require('./RESTfulAPI/Products/DeleteProducts.js')(app, con)
 require('./RESTfulAPI/Products/PostProducts.js')(app, con)
@@ -70,24 +72,10 @@ require('./RESTfulAPI/Shops/PutShops.js')(app, con)
 require('./RESTfulAPI/Shops/PatchShops.js')(app, con)
 require('./RESTfulAPI/Prices/GetPrices.js')(app, con)
 
+
 app.listen(3000, function() {
   console.log('Example app listening on port 3000!')
 })
-
-app.get('/product', function(req, res) {
-  sql = "Select * from Drinks";
-  con.query(sql, function(err, result) {
-    if (err) throw err;
-    console.log(result[0]);
-    var dict = {
-      ID: result[0].Type,
-      Name: result[0].Marka,
-      Description: result[0].Alcohol + '%, ' + result[0].Ml + 'ml, ' +
-        result[0].Price + '\u20AC'
-    }
-    res.send(JSON.stringify(dict));
-  });
-});
 
 function authenticationMiddleware(req, res, next) {
   if (req.cookies && req.cookies.userData) {
@@ -97,6 +85,7 @@ function authenticationMiddleware(req, res, next) {
   res.render('index', {
     authentication_failed: null,
     password_mismatch: null,
-    error_user_exist: null
+    error_user_exist: null,
+    error_fb_account_exist: null
   });
 }
