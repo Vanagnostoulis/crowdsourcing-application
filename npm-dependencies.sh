@@ -11,3 +11,4 @@ npm install --save passport-facebook
 npm install --save ejs
 npm install --save request
 npm install --save request-promise
+npm install --save nodemailer
