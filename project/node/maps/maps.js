@@ -15,7 +15,7 @@ xrhsimopoihsei hdh.
 PWS NA TO XRHSIMOPOIHSW???:
 
 Arxika prepei na to kaneis require:
-const a = require('./node/maps/getCoordinates.js');
+const a = require('./node/maps/maps.js');
 
 An theleis na to kaleseis mesa apo mia sunarthsh prepei na thn theseis
 prwta ws async. An px eisai sto app.get('/', authenticationMiddleware,  function (req, res))
@@ -24,7 +24,7 @@ dhladh app.get('/', authenticationMiddleware, async function (req, res) ).
 (PANTA H SYNARTHSH AP THN OPOIA KALEITAI PREPEI NA NAI  async)
 Epeita gia na kaleseis thn sunarthsh grafeis:
 
-  var location = await a.data.getCoordinates('Νικηταρά 22 Αιγάλεω')
+  var location = await a.getCoordinates('Νικηταρά 22 Αιγάλεω')
 kai pleon exeis to location = {Longitude: , Latitude} pou htheles.
 
 Proteinw meta apo auto na allajeis to cookie tou client wste
@@ -37,6 +37,7 @@ kai na allajeis to antikeimeno coordinates. Ayto ginetai opws parakatw:
   res.cookie("userData", {user: username, permission: permission, coordinates: {longitude: location.Longitude , latitude: location.Latitude}}, {expire : 24 * 60 * 60 * 1000 }, {overwrite: true});
 
 */
+var Distance = require('geo-distance');
 
 //var fromAddress = {
 module.exports = {
@@ -65,26 +66,21 @@ module.exports = {
       })
     return location;
   },
-
-  getDistanceFromLatLonInKm: function(lat1, lon1, lat2, lon2) {
-  var R = 6371; // Radius of the earth in km
-  var dLat = deg2rad(lat2-lat1);  // deg2rad below
-  var dLon = deg2rad(lon2-lon1);
-  var a =
-    Math.sin(dLat/2) * Math.sin(dLat/2) +
-    Math.cos(deg2rad(lat1)) * Math.cos(deg2rad(lat2)) *
-    Math.sin(dLon/2) * Math.sin(dLon/2)
-    ;
-  var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
-  var d = R * c; // Distance in km
-  return d;
-},
-
-  deg2rad: function(deg) {
-    return deg * (Math.PI/180)
+  /*Given the coordinates of 2 points , returns the straight distance in meters*/
+  straightDistance: async function(latitude1, longitude1, latitude2, longitude2) {
+    var point1 = {
+      lat: latitude1,
+      lon: longitude1
+    };
+    var point2 = {
+      lat: latitude2,
+      lon: longitude2
+    };
+    var dist = Distance.between(point1, point2);
+    console.log("Distance in meters: " + dist.human_readable().distance);
+    return dist.human_readable().distance;
   }
-
-
+  
 };
 
 //exports.data = fromAddress;

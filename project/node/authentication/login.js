@@ -31,7 +31,8 @@ module.exports = function(app, con, bcrypt) {
         res.render('index', {
           authentication_failed: "Το όνομα χρήστη δεν ταιριάζει με το συνθηματικό.",
           password_mismatch: null,
-          error_user_exist: null
+          error_user_exist: null,
+          error_fb_account_exist: null
         });
       } else {
         hash = result[0].Password
@@ -75,7 +76,8 @@ module.exports = function(app, con, bcrypt) {
             res.render('index', {
               authentication_failed: "Το όνομα χρήστη δεν ταιριάζει με το συνθηματικό.",
               password_mismatch: null,
-              error_user_exist: null
+              error_user_exist: null,
+              error_fb_account_exist: null
             });
           }
         });
