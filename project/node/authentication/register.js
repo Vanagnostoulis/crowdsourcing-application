@@ -10,7 +10,8 @@ module.exports = function(app, con, bcrypt) {
       res.render('index', {
         authentication_failed: null,
         password_mismatch: "Error password mismatch",
-        error_user_exist: null
+        error_user_exist: null,
+        error_fb_account_exist: null
       });
     } else {
       var sql = ""
@@ -40,7 +41,8 @@ module.exports = function(app, con, bcrypt) {
             res.render('index', {
               authentication_failed: null,
               password_mismatch: null,
-              error_user_exist: "Φαίνεται πως κάποιος χρήστης χρησιμοποιεί το ίδιο e-mail."
+              error_user_exist: "Φαίνεται πως κάποιος χρήστης χρησιμοποιεί το ίδιο e-mail.",
+              error_fb_account_exist: null
             })
           } else {
             /* if email duplicate do something */
