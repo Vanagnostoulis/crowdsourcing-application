@@ -7,6 +7,8 @@ const cookieParser = require('cookie-parser');
 const async = require("async");
 const nodemailer = require("nodemailer");
 const crypto = require("crypto");
+const fs = require('fs');
+const https = require('https');
 
 /* Connect to mysql */
 app.use(cookieParser());
@@ -73,9 +75,15 @@ require('./RESTfulAPI/Shops/PatchShops.js')(app, con)
 require('./RESTfulAPI/Prices/GetPrices.js')(app, con)
 
 
-app.listen(3000, function() {
-  console.log('Example app listening on port 3000!')
+https.createServer({
+  key: fs.readFileSync('certificate/server.key'),
+  cert: fs.readFileSync('certificate/server.cert')
+}, app).listen(3000, () => {
+  console.log('Listening...')
 })
+// app.listen(3000, function() {
+//   console.log('Example app listening on port 3000!')
+// })
 
 function authenticationMiddleware(req, res, next) {
   if (req.cookies && req.cookies.userData) {
