@@ -7,7 +7,6 @@
 <link href='http://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
 </head>
 
-
 <body>
 <div class="topnav">
 	<a href='#login.html'> <img src="img/kava.png" style="width:120px; height:50px; padding: 0px 16px"></img> </a>
@@ -22,7 +21,7 @@
 <div class="search-container">
 	<form action="/search" method="post">
 		<button type="submit"><i class="fa fa-search"></i></button>
-    	<input type="text" placeholder="Αναζήτηση..." name="search" id="search-box"  onclick="document.getElementById('search-box').style.borderColor='#668cff';"> 	
+    	<input type="text" oninput="SearchF()" placeholder="Αναζήτηση..." name="search" id="search-box"  onclick="document.getElementById('search-box').style.borderColor='#668cff';"> 	
     </form>
 </div>
   

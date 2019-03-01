@@ -42,7 +42,7 @@ var Distance = require('geo-distance');
 //var fromAddress = {
 module.exports = {
 
-  getCoordinates: async function(freeTextAddress) {
+    getCoordinates: async function(freeTextAddress) {
     const request = require('request-promise');
 
     text = freeTextAddress.replace(/\s/g, "+");
@@ -50,7 +50,7 @@ module.exports = {
 
     path = 'https://geocoder.api.here.com/6.2/geocode.json?app_id=qoxFJl1Vm1Boet7IWwE5&app_code=yCui6cYlQonbB6GDN01VFA&searchtext=' + text;
     var location;
-    await request({
+      await request({
         url: path,
         json: true
       })

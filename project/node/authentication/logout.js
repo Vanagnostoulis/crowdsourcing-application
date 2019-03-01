@@ -15,5 +15,6 @@ module.exports = function(app) {
       error_user_exist: null,
       error_fb_account_exist: null
     });
+    console.log(global.test)
   })
 }

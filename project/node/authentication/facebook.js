@@ -9,7 +9,7 @@ module.exports = function(app, con) {
   const util = require('util');
   const FacebookStrategy = require('passport-facebook').Strategy;
   const config = require('../../configuration/config');
-
+	
   app.use(cookieParser());
   app.use(session({
     secret: 'keyboard cat',
@@ -64,17 +64,12 @@ module.exports = function(app, con) {
     }
   );
 
-  app.get('/logout', function(req, res) {
-    req.logout();
-    res.clearCookie("userData");
-    res.redirect('/login');
-  });
 
   function ensureAuthenticated(req, res, next) {
     if (req.isAuthenticated()) {
       return next();
     }
-    res.redirect('/login')
+    res.redirect('/')
   }
 
   app.get('/log', ensureAuthenticated, function(req, res) {
@@ -98,14 +93,6 @@ module.exports = function(app, con) {
     });
   });
 
-  app.get('/login', function(req,res) {
-  res.render('index', {
-    authentication_failed: null,
-    password_mismatch: null,
-    error_user_exist: null,
-    error_fb_account_exist: null
-  });
-})
 
 
 /******** Register using facebook **************/
