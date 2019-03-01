@@ -1099,3 +1099,249 @@ insert into Store_Address (Store_Id,Street,Postal_Code,Region)
 values (273,'Λιάσκα',34100,'Χαλκίδα');
 insert into Store_Address (Store_Id,Street,Postal_Code,Region)
 values (274,'Κώτσου',34100,'Χαλκίδα');
+
+insert into Store(Type,Store_Id,Name,Longtitude,Latitude,Phone_Num)
+values ('Super Market',275,'ΑΒ',21.41943,38.6177,'2641053139 - ΑΒ');
+insert into Store(Type,Store_Id,Name,Longtitude,Latitude,Phone_Num)
+values ('Super Market',276,'ΑΒ',21.407239999999998,38.62585,'2641020440 - ΑΒ');
+insert into Store(Type,Store_Id,Name,Longtitude,Latitude,Phone_Num)
+values ('Super Market',277,'ΑΒ',21.39649,38.62958,'2641053509 - ΑΒ');
+insert into Store(Type,Store_Id,Name,Longtitude,Latitude,Phone_Num)
+values ('Super Market',278,'ΑΒ',21.430870000000002,38.37576,'2631028866 - AB');
+insert into Store(Type,Store_Id,Name,Longtitude,Latitude,Phone_Num)
+values ('Super Market',279,'ΑΒ',22.75157,37.62308,'2751069157 - ΑΒ');
+insert into Store(Type,Store_Id,Name,Longtitude,Latitude,Phone_Num)
+values ('Super Market',280,'ΑΒ',23.14132,37.62863,'2753096539 - City');
+insert into Store(Type,Store_Id,Name,Longtitude,Latitude,Phone_Num)
+values ('Super Market',281,'ΑΒ',22.80323,37.56709,'2752047138 - AB');
+insert into Store(Type,Store_Id,Name,Longtitude,Latitude,Phone_Num)
+values ('Super Market',282,'ΑΒ',23.14464,37.328109999999995,'2754029756 - AB');
+insert into Store(Type,Store_Id,Name,Longtitude,Latitude,Phone_Num)
+values ('Super Market',283,'ΑΒ',22.38244,37.50962,'2710234611 - ΑΒ');
+insert into Store(Type,Store_Id,Name,Longtitude,Latitude,Phone_Num)
+values ('Super Market',284,'ΑΒ',21.01155,39.15934,'2681082080 - ΑΒ');
+insert into Store(Type,Store_Id,Name,Longtitude,Latitude,Phone_Num)
+values ('Super Market',285,'ΑΒ',20.96124,39.15552,'2681051691 - ΑΒ');
+insert into Store(Type,Store_Id,Name,Longtitude,Latitude,Phone_Num)
+values ('Super Market',286,'ΑΒ',23.6582,37.98648,'2105615108 - ΑΒ');
+insert into Store(Type,Store_Id,Name,Longtitude,Latitude,Phone_Num)
+values ('Super Market',287,'ΑΒ',23.82381,38.0136,'2106083064 - ΑΒ');
+insert into Store(Type,Store_Id,Name,Longtitude,Latitude,Phone_Num)
+values ('Super Market',288,'ΑΒ',23.80518,38.00862,'2106548094 - ΑΒ');
+insert into Store(Type,Store_Id,Name,Longtitude,Latitude,Phone_Num)
+values ('Super Market',289,'ΑΒ',23.74076,37.93942,'2109769556 - AB');
+insert into Store(Type,Store_Id,Name,Longtitude,Latitude,Phone_Num)
+values ('Super Market',290,'ΑΒ',23.72044,37.93363,'2109373734 - AB');
+insert into Store(Type,Store_Id,Name,Longtitude,Latitude,Phone_Num)
+values ('Super Market',291,'ΑΒ',23.666220000000003,37.97416,'2104930237 - AB');
+insert into Store(Type,Store_Id,Name,Longtitude,Latitude,Phone_Num)
+values ('Super Market',292,'ΑΒ',23.73055,38.00607,'2108660842 - City');
+insert into Store(Type,Store_Id,Name,Longtitude,Latitude,Phone_Num)
+values ('Super Market',293,'ΑΒ',23.72413,38.00447,'2108547242 - AB');
+insert into Store(Type,Store_Id,Name,Longtitude,Latitude,Phone_Num)
+values ('Super Market',294,'ΑΒ',23.763479999999998,37.99478,'2106926600 - AB');
+
+insert into Store_Address (Store_Id,Street,Postal_Code,Region)
+values (275,'Πανεπιστημίου + Δελφών',30100,'Αγρίνιο');
+insert into Store_Address (Store_Id,Street,Num,Postal_Code,Region)
+values (276,'Σουλίου',18,30100,'Αγρίνιο');
+insert into Store_Address (Store_Id,Street,Num,Postal_Code,Region)
+values (277,'Αργυροκάστρου',54,30100,'Αγρίνιο');
+insert into Store_Address (Store_Id,Street,Postal_Code,Region)
+values (278,'Παπαδιαμαντοπούλου + Πετρουλα',30200,'Μεσολόγγι');
+insert into Store_Address (Store_Id,Street,Postal_Code,Region)
+values (279,'Ε.Ο. Άργους-Ναυπλίου',21200,'Άργος');
+insert into Store_Address (Store_Id,Street,Region)
+values (280,'Επιδαύρου - Κοστα','Επίδαυρος');
+insert into Store_Address (Store_Id,Street,Postal_Code,Region)
+values (281,'Μπουμπουλίνας + Νέας Κίου',21100,'Ναύπλιο');
+insert into Store_Address (Store_Id,Street,Postal_Code,Region)
+values (282,'Επ. Οδός Πόρτο Χέλι-Κόστα',21300,'Πόρτο Χέλι');
+insert into Store_Address (Store_Id,Street,Num,Postal_Code,Region)
+values (283,'Ναυπλίου',39,22100,'Τρίπολη');
+insert into Store_Address (Store_Id,Street,Postal_Code,Region)
+values (284,'Κόμβος Ιόνιας Οδού',47100,'Άρτα');
+insert into Store_Address (Store_Id,Street,Postal_Code,Region)
+values (285,'2ο χλμ. Ε.Ο. Άρτας-Ιωαννίνων',47100,'Άρτα');
+insert into Store_Address (Store_Id,Street,Num,Postal_Code,Region)
+values (286,'Λεωφ. Ελ. Βενιζέλου',95,12351,'Αγ. Βαρβάρα');
+insert into Store_Address (Store_Id,Street,Num,Postal_Code,Region)
+values (287,'Λεωφ. Μεσογείων',430,15343,'Αγ. Παρασκευή');
+insert into Store_Address (Store_Id,Street,Num,Postal_Code,Region)
+values (288,'Λεωφ. Μεσογείων',316,15562,'Αγ. Παρασκευή');
+insert into Store_Address (Store_Id,Street,Num,Postal_Code,Region)
+values (289,'Λεωφ. Βουλιαγμένης',276,17343,'Άγιος Δημήτριος');
+insert into Store_Address (Store_Id,Street,Num,Postal_Code,Region)
+values (290,'Κομνηνών',1,17341,'Άγιος Δημήτριος');
+insert into Store_Address (Store_Id,Street,Num,Postal_Code,Region)
+values (291,'Θηβών',226,18233,'Άγιος Ιωάννης Ρέντης');
+insert into Store_Address (Store_Id,Street,Num,Postal_Code,Region)
+values (292,'Φυλής',245,11253,'Αθήνα');
+insert into Store_Address (Store_Id,Street,Num,Postal_Code,Region)
+values (293,'Δεμερτζή',16,10445,'Αθήνα');
+insert into Store_Address (Store_Id,Street,Num,Postal_Code,Region)
+values (294,'Κονοπισοπούλου',18,11524,'Αθήνα');
+
+insert into Store(Type,Store_Id,Name,Longtitude,Latitude,Phone_Num)
+values ('Super Market',295,'My Market',23.16258,37.36133,'2754029190');
+insert into Store(Type,Store_Id,Name,Longtitude,Latitude,Phone_Num)
+values ('Super Market',296,'My Market',24.05632,37.71634,'2292060889');
+insert into Store(Type,Store_Id,Name,Longtitude,Latitude,Phone_Num)
+values ('Super Market',297,'My Market',23.662689999999998,37.99603,'2105446601');
+insert into Store(Type,Store_Id,Name,Longtitude,Latitude,Phone_Num)
+values ('Super Market',298,'My Market',23.661,37.9885,'2105695204');
+insert into Store(Type,Store_Id,Name,Longtitude,Latitude,Phone_Num)
+values ('Super Market',299,'My Market',23.72256,38.02271,'2108541934');
+insert into Store(Type,Store_Id,Name,Longtitude,Latitude,Phone_Num)
+values ('Super Market',300,'My Market',23.6741,37.959340000000005,'2104819618');
+insert into Store(Type,Store_Id,Name,Longtitude,Latitude,Phone_Num)
+values ('Super Market',301,'My Market',23.715429999999998,37.99925,'2105127568');
+insert into Store(Type,Store_Id,Name,Longtitude,Latitude,Phone_Num)
+values ('Super Market',302,'My Market',23.73237,38.00646,'2108620448');
+insert into Store(Type,Store_Id,Name,Longtitude,Latitude,Phone_Num)
+values ('Super Market',303,'My Market',23.67172,38.003609999999995,'2105312227');
+insert into Store(Type,Store_Id,Name,Longtitude,Latitude,Phone_Num)
+values ('Super Market',304,'My Market',23.69974,38.084740000000004,'2102483300');
+insert into Store(Type,Store_Id,Name,Longtitude,Latitude,Phone_Num)
+values ('Super Market',305,'My Market',23.73497,38.078540000000004,'2102465338');
+insert into Store(Type,Store_Id,Name,Longtitude,Latitude,Phone_Num)
+values ('Super Market',306,'My Market',23.73799,38.082370000000004,'2102443976');
+insert into Store(Type,Store_Id,Name,Longtitude,Latitude,Phone_Num)
+values ('Super Market',307,'My Market',23.79918,37.83397,'2108975210');
+insert into Store(Type,Store_Id,Name,Longtitude,Latitude,Phone_Num)
+values ('Super Market',308,'My Market',23.75753,38.02407,'2102934094');
+insert into Store(Type,Store_Id,Name,Longtitude,Latitude,Phone_Num)
+values ('Super Market',309,'My Market',23.76166,37.89113,'2109605556');
+insert into Store(Type,Store_Id,Name,Longtitude,Latitude,Phone_Num)
+values ('Super Market',310,'My Market',23.547639999999998,38.04056,'2105547773');
+insert into Store(Type,Store_Id,Name,Longtitude,Latitude,Phone_Num)
+values ('Super Market',311,'My Market',23.52117,38.05446,'2105549315');
+insert into Store(Type,Store_Id,Name,Longtitude,Latitude,Phone_Num)
+values ('Super Market',312,'My Market',23.76152,37.979459999999996,'2107472452');
+insert into Store(Type,Store_Id,Name,Longtitude,Latitude,Phone_Num)
+values ('Super Market',313,'My Market',23.75855,37.93287,'2109940433');
+insert into Store(Type,Store_Id,Name,Longtitude,Latitude,Phone_Num)
+values ('Super Market',314,'My Market',23.707520000000002,38.028690000000005,'2102691551');
+
+insert into Store_Address (Store_Id,Street,Postal_Code,Region)
+values (295,'2ο χλμ Ε.Ο. Κρανιδίου-Πορτοχελίου',21300,'Κρανίδι');
+insert into Store_Address (Store_Id,Street,Num,Region)
+values (296,'Φωκίωνος Νέγρη',3,'Λαύριο');
+insert into Store_Address (Store_Id,Street,Num,Region)
+values (297,'Ελ.Βενιζέλου',42,'Αγία Βαρβάρα');
+insert into Store_Address (Store_Id,Street,Num,Postal_Code,Region)
+values (298,'Λεωφόρος Μεγάλου Αλεξάνδρου',139,12351,'Αγία Βαρβάρα');
+insert into Store_Address (Store_Id,Street,Num,Region)
+values (299,'Μαυρομιχάλη',30,'Άγιοι Ανάργυροι');
+insert into Store_Address (Store_Id,Street,Num,Region)
+values (300,'Περικλέους',4,'Άγιος Ιωάννης Ρέντης');
+insert into Store_Address (Store_Id,Street,Num,Region)
+values (301,'Βοσπόρου',42,'Αθήνα');
+insert into Store_Address (Store_Id,Street,Num,Region)
+values (302,'Λευκωσίας',46,'Αθήνα');
+insert into Store_Address (Store_Id,Street,Num,Region)
+values (303,'Εδέσσης',34,'Αιγάλεω');
+insert into Store_Address (Store_Id,Street,Region)
+values (304,'Καραϊσκάκη+Ολυμπίου','Άνω Λιόσια');
+insert into Store_Address (Store_Id,Street,Num,Region)
+values (305,'Λεωφόρος Αθηνών',24,'Αχαρνές');
+insert into Store_Address (Store_Id,Street,Num,Region)
+values (306,'Λέκκα',10,'Αχαρνές');
+insert into Store_Address (Store_Id,Street,Num,Postal_Code,Region)
+values (307,'Λεωφόρος Αναγυρούντος',14,16672,'Βάρη');
+insert into Store_Address (Store_Id,Street,Num,Region)
+values (308,'Αγίας Ειρήνης',12,'Γαλάτσι');
+insert into Store_Address (Store_Id,Street,Num,Region)
+values (309,'Κ. Αθανάτου',5,'Γλυφάδα');
+insert into Store_Address (Store_Id,Street,Postal_Code,Region)
+values (310,'Επισμηναγού Νέζη+Γράμμου',19200,'Ελευσίνα');
+insert into Store_Address (Store_Id,Street,Postal_Code,Region)
+values (311,'23ο χλμ Π.Ε.Ο. Αθηνών-Θηβών+Κίμωνος',19600,'Ελευσίνα');
+insert into Store_Address (Store_Id,Street,Num,Region)
+values (312,'Γ. Παπανδρέου',7,'Ζωγράφου');
+insert into Store_Address (Store_Id,Street,Num,Region)
+values (313,'Σοφοκλή Βενιζέλου',111,'Ηλιούπολη');
+insert into Store_Address (Store_Id,Street,Region)
+values (314,'Μενελάου+Θέτιδος','Ίλιον');
+
+insert into Store(Type,Store_Id,Name,Longtitude,Latitude,Phone_Num)
+values ('Super Market',315,'Σκλαβενίτης',23.6523,37.987770000000005,'2105625366');
+insert into Store(Type,Store_Id,Name,Longtitude,Latitude,Phone_Num)
+values ('Super Market',316,'Σκλαβενίτης',23.74018,37.94153,'2109750030');
+insert into Store(Type,Store_Id,Name,Longtitude,Latitude,Phone_Num)
+values ('Super Market',317,'Σκλαβενίτης',23.72917,37.91833,'2109912150');
+insert into Store(Type,Store_Id,Name,Longtitude,Latitude,Phone_Num)
+values ('Super Market',318,'Σκλαβενίτης',23.72976,37.936209999999996,'2109767280');
+insert into Store(Type,Store_Id,Name,Longtitude,Latitude,Phone_Num)
+values ('Super Market',319,'Σκλαβενίτης',23.73764,37.94911,'2109715482');
+insert into Store(Type,Store_Id,Name,Longtitude,Latitude,Phone_Num)
+values ('Super Market',320,'Σκλαβενίτης',23.72343,37.92347,'2109888939');
+insert into Store(Type,Store_Id,Name,Longtitude,Latitude,Phone_Num)
+values ('Super Market',321,'Σκλαβενίτης',23.73444,37.93,'2109961458');
+insert into Store(Type,Store_Id,Name,Longtitude,Latitude,Phone_Num)
+values ('Super Market',322,'Σκλαβενίτης',23.6574,37.96247,'2104900519 ');
+insert into Store(Type,Store_Id,Name,Longtitude,Latitude,Phone_Num)
+values ('Super Market',323,'Σκλαβενίτης',23.744529999999997,38.00284,'2108661177');
+insert into Store(Type,Store_Id,Name,Longtitude,Latitude,Phone_Num)
+values ('Super Market',324,'Σκλαβενίτης',23.7254,37.95898,'2109230382');
+insert into Store(Type,Store_Id,Name,Longtitude,Latitude,Phone_Num)
+values ('Super Market',325,'Σκλαβενίτης',23.71654,38.00278,'2105150377 ');
+insert into Store(Type,Store_Id,Name,Longtitude,Latitude,Phone_Num)
+values ('Super Market',326,'Σκλαβενίτης',23.72389,37.96417,'2109213043 ');
+insert into Store(Type,Store_Id,Name,Longtitude,Latitude,Phone_Num)
+values ('Super Market',327,'Σκλαβενίτης',23.75892,37.98033,'2107714403');
+insert into Store(Type,Store_Id,Name,Longtitude,Latitude,Phone_Num)
+values ('Super Market',328,'Σκλαβενίτης',23.72275,37.95407,'2109013201');
+insert into Store(Type,Store_Id,Name,Longtitude,Latitude,Phone_Num)
+values ('Super Market',329,'Σκλαβενίτης',23.74736,37.99646,'2108820518');
+insert into Store(Type,Store_Id,Name,Longtitude,Latitude,Phone_Num)
+values ('Super Market',330,'Σκλαβενίτης',23.76889,37.995,'2106928022');
+insert into Store(Type,Store_Id,Name,Longtitude,Latitude,Phone_Num)
+values ('Super Market',331,'Σκλαβενίτης',23.74298,38.0244,'2102922078');
+insert into Store(Type,Store_Id,Name,Longtitude,Latitude,Phone_Num)
+values ('Super Market',332,'Σκλαβενίτης',23.74034,37.98658,'2103842805');
+insert into Store(Type,Store_Id,Name,Longtitude,Latitude,Phone_Num)
+values ('Super Market',333,'Σκλαβενίτης',23.744120000000002,37.967940000000006,'2107018316');
+insert into Store(Type,Store_Id,Name,Longtitude,Latitude,Phone_Num)
+values ('Super Market',334,'Σκλαβενίτης',23.717670000000002,37.995,'2105144660');
+
+insert into Store_Address (Store_Id,Street,Num,Postal_Code,Region)
+values (315,'Κερκύρας',30,12351,'Αγία Βαρβάρα');
+insert into Store_Address (Store_Id,Street,Num,Postal_Code,Region)
+values (316,'Λεωφόρος Βουλιαγμένης',268,17343,'Άγιος Δημήτριος');
+insert into Store_Address (Store_Id,Street,Num,Postal_Code,Region)
+values (317,'Θεομήτορος',38,17342,'Άγιος Δημήτριος');
+insert into Store_Address (Store_Id,Street,Num,Postal_Code,Region)
+values (318,'Λεωφόρος Αγίου Δημητρίου',161,17343,'Άγιος Δημήτριος');
+insert into Store_Address (Store_Id,Street,Num,Postal_Code,Region)
+values (319,'Στριγγάρη',7,17343,'Άγιος Δημήτριος');
+insert into Store_Address (Store_Id,Street,Num,Postal_Code,Region)
+values (320,'Λεωφόρος Αγίου Δημητρίου',298,17342,'Άγιος Δημήτριος');
+insert into Store_Address (Store_Id,Street,Num,Postal_Code,Region)
+values (321,'Λιδορικίου',3,17342,'Άγιος Δημήτριος');
+insert into Store_Address (Store_Id,Street,Num,Postal_Code,Region)
+values (322,'Θηβών ',119,18233,'Άγιος Ιωάννης Ρέντης');
+insert into Store_Address (Store_Id,Street,Num,Postal_Code,Region)
+values (323,'Βελβενδού',25,11363,'Αθήνα');
+insert into Store_Address (Store_Id,Street,Num,Postal_Code,Region)
+values (324,'Σαρκουδίνου',12,11745,'Αθήνα');
+insert into Store_Address (Store_Id,Street,Num,Postal_Code,Region)
+values (325,'Δόρδου',16,10443,'Αθήνα');
+insert into Store_Address (Store_Id,Street,Num,Postal_Code,Region)
+values (326,'Δημητρακοπούλου',72,11741,'Αθήνα');
+insert into Store_Address (Store_Id,Street,Num,Postal_Code,Region)
+values (327,'Παπαδιαμαντοπούλου',57,11528,'Αθήνα');
+insert into Store_Address (Store_Id,Street,Num,Postal_Code,Region)
+values (328,'Μπακνανά',24,11745,'Αθήνα');
+insert into Store_Address (Store_Id,Street,Num,Postal_Code,Region)
+values (329,'Αγίου Στεφάνου',2,11363,'Αθήνα');
+insert into Store_Address (Store_Id,Street,Num,Postal_Code,Region)
+values (330,'Σεβαστουπόλεως',135,11526,'Αθήνα');
+insert into Store_Address (Store_Id,Street,Postal_Code,Region)
+values (331,'Τραλλέων+Ολοφύτου',11142,'Αθήνα');
+insert into Store_Address (Store_Id,Street,Num,Postal_Code,Region)
+values (332,'Χαριλάου Τρικούπη',111,11473,'Αθήνα');
+insert into Store_Address (Store_Id,Street,Num,Postal_Code,Region)
+values (333,'Πλατεία Πλαστήρα',5,11635,'Αθήνα');
+insert into Store_Address (Store_Id,Street,Num,Postal_Code,Region)
+values (334,'Βορείου Ηπείρου',37,10444,'Αθήνα');

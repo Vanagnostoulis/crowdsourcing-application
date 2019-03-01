@@ -94,16 +94,16 @@ create table Time_Table (
 
 create table Drinks (
 	Drink_Id 	int unsigned auto_increment not null,
-	Type 		varchar(20) character set utf8 collate utf8_general_ci not null,
-	Marka 		varchar(300) character set utf8 collate utf8_general_ci not null,
-	Alcohol 	real(2,1) ,
-	Price 		real(4,2) not null,
+	Category 	varchar(20) character set utf8 collate utf8_general_ci not null,
+	Description varchar(300) character set utf8 collate utf8_general_ci ,
+	Price 		real(6,2) not null,
 	Ml 			int(4),
+	Tag		    varchar(30),
 	Store_Id 	int unsigned not null,
 	Withdrawn 	int(1) default 0,
-	Views_Per_Day 	int unsigned not null default 0,
-	Start_Day 		date not null,
-	Finish_Day 		date not null, 
+	-- Views_Per_Day 	int unsigned not null default 0,
+	-- Start_Day 		date not null,
+	-- Finish_Day 		date not null, 
 	primary key(Drink_Id),
 	foreign key(Store_Id) references Store(Store_Id) 
 	on delete cascade
