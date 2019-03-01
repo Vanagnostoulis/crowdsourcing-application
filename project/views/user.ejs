@@ -13,10 +13,20 @@
 <body>
 <div class="topnav">
 	<a href='#login.html'> <img src="img/kava.png" style="width:120px; height:50px; padding: 0px 16px"></img> </a>
-	<a href=# id = profileImage></a>
+		<a href='#' id='profileImage' onclick="document.getElementById('dropdown').style.display='block'">
+		</a>
 	<a id= "welcome" href="#" >
     </a>
 </div>
+
+<div class="dropdown-content" id='dropdown'>
+	<button id='settings'>Ρυθμίσεις</button>
+	<form action='/logout' method="get">   
+		<button id='logout_btn' >Αποσύνδεση</button>	
+	</form>
+	<button id='help'>Βοήθεια</button>
+</div>
+
 <script>
 $(document).ready(function(){
   const username = "<%= username %>".charAt(0).toUpperCase() + "<%= username %>".substr(1).toLowerCase(); 
@@ -34,12 +44,19 @@ $(document).ready(function(){
 
 <script>
 var search = document.getElementById("search-box");
+var logout = document.getElementById("profileImage");
+
 
 window.onclick = function(event) {
 	if (event.target != search) {
        document.getElementById('search-box').style.borderColor='#888' 
     }
+    
+    if ((event.target != logout)) {
+        document.getElementById('dropdown').style.display = "none";
+    }
 }
+
 </script>  
 
 </body>

@@ -7,7 +7,6 @@
 <link href='http://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
 </head>
 
-
 <body>
 <div class="topnav">
 	<a href='#login.html'> <img src="img/kava.png" style="width:120px; height:50px; padding: 0px 16px"></img> </a>
@@ -22,7 +21,7 @@
 <div class="search-container">
 	<form action="/search" method="post">
 		<button type="submit"><i class="fa fa-search"></i></button>
-    	<input type="text" placeholder="Αναζήτηση..." name="search" id="search-box"  onclick="document.getElementById('search-box').style.borderColor='#668cff';"> 	
+    	<input type="text" oninput="SearchF()" placeholder="Αναζήτηση..." name="search" id="search-box"  onclick="document.getElementById('search-box').style.borderColor='#668cff';"> 	
     </form>
 </div>
   
@@ -81,7 +80,9 @@
      	<% if(error_user_exist !== null){ %>
   			<p class="error"><b><%= error_user_exist %></b></p>
 		<% } %>
-		
+		<% if(error_fb_account_exist !== null){ %>
+  			<p class="error"><b><%= error_fb_account_exist %></b></p>
+		<% } %>		
 		<% if(password_mismatch !== null){ %>
   			<p class="error"><b><%= password_mismatch %></b></p>
 		<% } %>
@@ -106,11 +107,16 @@
 </div>
 
 
-
 <% if(error_user_exist !== null){
 	%> <script> 
 		document.getElementById('register').style.display='block'; 
 		document.getElementById('email-reg').style.borderColor='#b30000'
+	</script> <%
+} %>
+
+<% if(error_fb_account_exist !== null){
+	%> <script> 
+		document.getElementById('register').style.display='block'; 
 	</script> <%
 } %>
 

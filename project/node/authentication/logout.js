@@ -5,14 +5,16 @@ module.exports = function(app) {
 
   app.use(cookieParser());
 
-  app.post('/logout', function(req, res) {
+  app.get('/logout', function(req, res) {
     /* variables for login */
-    console.logout(req.cookies.userData.user + " has just logged out.")
+    console.log(req.cookies.userData.user + " has just logged out.")
     res.clearCookie("userData");
     res.render('index', {
       authentication_failed: null,
       password_mismatch: null,
-      error_user_exist: null
+      error_user_exist: null,
+      error_fb_account_exist: null
     });
+    console.log(global.test)
   })
 }

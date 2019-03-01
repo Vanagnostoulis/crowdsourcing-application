@@ -4,13 +4,13 @@ module.exports = function(app, con, bcrypt) {
   const cookieParser = require('cookie-parser');
 
   app.use(cookieParser());
-
+  
   app.post('/login', function(req, res) {
     /* variables for login */
 
     username = req.body.uname; /* name = "uname" in javascript on some placeholder */
     password = req.body.psw;
-
+	global.test = username
     mail_login = false;
 
     if (username.includes("@")) {
@@ -31,7 +31,8 @@ module.exports = function(app, con, bcrypt) {
         res.render('index', {
           authentication_failed: "Το όνομα χρήστη δεν ταιριάζει με το συνθηματικό.",
           password_mismatch: null,
-          error_user_exist: null
+          error_user_exist: null,
+          error_fb_account_exist: null
         });
       } else {
         hash = result[0].Password
@@ -75,7 +76,8 @@ module.exports = function(app, con, bcrypt) {
             res.render('index', {
               authentication_failed: "Το όνομα χρήστη δεν ταιριάζει με το συνθηματικό.",
               password_mismatch: null,
-              error_user_exist: null
+              error_user_exist: null,
+              error_fb_account_exist: null
             });
           }
         });
@@ -89,5 +91,7 @@ module.exports = function(app, con, bcrypt) {
     console.log("Entered to login");
     console.log("username: " + username);
     console.log("password: " + password);
+    console.log(global.test)
   })
+  
 }
