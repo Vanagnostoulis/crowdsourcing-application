@@ -12,3 +12,5 @@ npm install --save ejs
 npm install --save request
 npm install --save request-promise
 npm install --save nodemailer
+npm install --save geo-distance
+npm install --save https
