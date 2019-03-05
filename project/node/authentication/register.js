@@ -71,7 +71,14 @@ module.exports = function(app, con, bcrypt) {
                   expire: 24 * 60 * 60 * 1000
                 });
                 res.render('user', {
-                  username: username
+                  username: username,
+				lat: null,
+				lon: null,
+				state: null,
+				region: null,
+				street: null,
+				num: null,
+				pcode: null
                 });
               });
             });
