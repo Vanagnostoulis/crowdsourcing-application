@@ -9,7 +9,7 @@ module.exports = function(app, con) {
   const util = require('util');
   const FacebookStrategy = require('passport-facebook').Strategy;
   const config = require('../../configuration/config');
-	
+
   app.use(cookieParser());
   app.use(session({
     secret: 'keyboard cat',
@@ -64,6 +64,11 @@ module.exports = function(app, con) {
     }
   );
 
+  app.get('/logout', function(req, res) {
+    req.logout();
+    res.clearCookie("userData");
+    res.redirect('/');
+  });
 
   function ensureAuthenticated(req, res, next) {
     if (req.isAuthenticated()) {
@@ -89,10 +94,25 @@ module.exports = function(app, con) {
       expire: 24 * 60 * 60 * 1000
     });
     res.render('user', {
-      username: req.user.displayName
+      username: req.user.displayName,
+      lat: null,
+	  lon: null,
+	  state: null,
+	  region: null,
+	  street: null,
+	  num: null,
+	  pcode: null
     });
   });
 
+  app.get('/login', function(req,res) {
+  res.render('index', {
+    authentication_failed: null,
+    password_mismatch: null,
+    error_user_exist: null,
+    error_fb_account_exist: null
+  });
+})
 
 
 /******** Register using facebook **************/
@@ -157,8 +177,6 @@ module.exports = function(app, con) {
 		      } 
 		      
 		     else {
-		      
-	
 				sql = "INSERT IGNORE INTO Email_Domains (Domain_Name) VALUES ('" + fake_mail[1] + "')"
 				con.query(sql, function(err, result) {
 				  if (err) throw err;
@@ -192,7 +210,14 @@ module.exports = function(app, con) {
 				  expire: 24 * 60 * 60 * 1000
 				});
 				res.render('user', {
-				  username: req.user.displayName
+				  username: req.user.displayName,
+				  lat: null,
+				  lon: null,
+				  state: null,
+				  region: null,
+				  street: null,
+				  num: null,
+				  pcode: null
 				});
 			  }
 		});
