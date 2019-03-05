@@ -1,0 +1,290 @@
+.catch-phrase {
+  font: 1px  Helvetica, sans-serif;
+  font-size: 30px;
+  margin-left: 148px;
+  color: #fff;
+  text-shadow: 3px 3px 0px rgba(0,0,0,0.1), 7px 7px 0px rgba(0,0,0,0.05);
+  cursor: default;
+}
+
+
+
+/*********************************************************************/
+
+body {
+	background: url(../img/wine3.jpg) no-repeat center center fixed; 
+	-webkit-background-size: cover;
+        -moz-background-size: cover;
+        -o-background-size: cover;
+        background-size: cover;
+	margin: 0;
+}
+
+
+* {
+  box-sizing: border-box;
+}
+
+
+.product{
+  font: 1px  serif;
+  font-style: italic;
+  font-weight:bolder;
+  font-size: 20px;
+  color: #E0D263;
+}
+.description {
+  font: 1px  sans-serif;
+  font-size: 15px;
+  float:left;
+  color: #fff
+}
+.price {
+  margin-bottom:0px;
+  font: 1px  Helvetica, sans-serif;
+  font-weight:bolder;
+  font-size: 30px;
+  margin-left: 630px;
+  color: #fff;
+  text-shadow: 3px 3px 0px rgba(0,0,0,0.1), 7px 7px 0px rgba(0,0,0,0.05);
+}
+
+
+/* Extra styles for the cancel button */
+.cancelbtn {
+  position: fixed;
+  top:90%;
+  left:5%;
+  width: auto;
+  padding: 10px 18px;
+  color: white;
+  margin: 8px 0;
+  cursor: pointer;
+  background-color: #000;
+  border: none;
+  border-radius: 8px;
+}
+
+
+/* top bar for login */
+
+/* Add Zoom Animation */
+/* needs change */
+@media screen and (max-width: 600px) {
+  .search-container {
+    float: none;
+  }
+   .search-container input[type=text], .search-container button {
+    float: none;
+    display: block;
+    text-align: left;
+    width: 100%;
+    margin: 0;
+    padding: 14px;
+  }
+  .search-container input[type=text] {
+    border: 1px solid #ccc;  
+  }
+}
+
+.topnav #profileImage {
+  float: right;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: #512DA8;
+  font-size: 25px;
+  color: #fff;
+  text-align: center;
+  line-height: 45px;
+  margin: 10px 0px;
+  margin-right: 15px;
+  text-decoration: none;
+}
+/* top bar for login */
+.topnav {
+  overflow: hidden;
+  background-color:black;
+}
+
+
+/* Logout button*/
+.dropdown-content {
+  width: 10%;
+  display: none;
+  float: right;
+  margin-top: 0px;
+  margin-right: 0px;
+}
+
+.dropdown-content button {
+  width: 100%;
+  padding: 10px 10px 10px 10px;
+  color: #b37700;
+  background-color: black;
+  text-decoration: none;
+  border: none;
+  display: block;
+}
+
+.dropdown-content button:hover {
+	background-color: black;
+	opacity: 0.8;
+	cursor: pointer;
+}
+#myUL {
+  position:absolute;
+  width: 60%; /*60%;*/
+  margin-top: 50px;/*180px;*/
+  margin-left: 220px;
+  font-size:17px;
+  background-color: #111;
+  list-style-type: none;
+  padding: 0;
+
+}
+
+#myUL li  {
+  height: 500px;
+  border: 1px solid #ddd;
+  padding: 12px;
+  text-decoration: none;
+  font-size: 18px;
+  background-color: #111;
+  display: block;
+}
+.map {
+  position: absolute;
+  top: 170px;
+  left: 20px;
+  width: 350px;
+  height: 240px;	
+}
+
+.elem{
+  font: 1px  sans-serif;
+  font-size: 15px;
+  color: #fff
+}
+
+.wrapper {
+  display: -ms-flexbox; /* IE10 */
+  display: flex;
+  -ms-flex-wrap: wrap; /* IE10 */
+  flex-wrap: wrap;
+  margin: 10px -16px;
+}
+
+.col-r {
+  -ms-flex: 60%; /* IE10 */
+  flex: 60%;
+  padding: 0 16px;
+}
+
+.col-n {
+  margin-top: 40px;
+  margin-left: 100px;
+  -ms-flex: 25%; /* IE10 */
+  flex: 25%;
+  padding: 0px 16px;
+}
+
+/* Update drink form */
+/* The Modal (background)*/ 
+.modal_form {
+ /* Hidden by default */
+  display: none;
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+  padding-top: 60px;
+}
+
+
+.modal_drink_content {
+	display: none;
+	position: absolute;
+ 	background-color:  #fefefefe;
+	/*margin: 3% 5%;  5% from the top, 15% from the bottom and centered */
+  	/*border: 1px solid #888;*/
+  	padding: 10px;
+  	top: 100px;
+  	left: 390px;
+  	width: 42%; /* Could be more or less, depending on screen size */
+  	height: 400px;
+  	border-radius: 6px;
+}
+
+.final_btn {
+	position: absolute;
+	top: 350px;
+	left: 320px;
+	cursor: pointer;
+	height: 10%;
+	width: 200px;
+	color: white;
+	background-color: #009999;
+}
+/* Add Zoom Animation */
+.animate {
+  -webkit-animation: animatezoom 0.6s;
+  animation: animatezoom 0.6s
+}
+
+@-webkit-keyframes animatezoom {
+  from {-webkit-transform: scale(0)} 
+  to {-webkit-transform: scale(1)}
+}
+  
+@keyframes animatezoom {
+  from {transform: scale(0)} 
+  to {transform: scale(1)}
+}
+
+/********* test **************/
+.wrapper2 {
+  display: -ms-flexbox; /* IE10 */
+  display: flex;
+  -ms-flex-wrap: wrap; /* IE10 */
+  flex-wrap: wrap;
+  margin: 0 -10px;
+}
+
+
+.col2-n {
+  -ms-flex: 25%; /* IE10 */
+  flex: 25%;
+  padding: 0 16px;
+}
+
+.update_btn {
+	position: absolute;
+	width: 200px;
+	border: none;
+	text-decoration: none;
+	color:  #E0D263;
+	height: 20px;
+	font-size: 17px;
+	left: 640px;
+}
+
+.cancel_btn {
+	cursor: pointer;
+	margin-right: 1px;
+	border: none;
+}
+.continue_btn {
+	margin-top: 20px;
+	float: right;
+	margin-right: 20px;
+	cursor: pointer;
+	height: 10%;
+	width: 200px;
+	color: white;
+	background-color: #009999;
+}

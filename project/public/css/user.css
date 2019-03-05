@@ -48,9 +48,12 @@
 /*********************************************************************/
 
 body {
-	background: url(../img/cocktail3.jpg) no-repeat; 
-	background-size: cover;
-	margin: 0;
+	background: url(../img/cocktail3.jpg) no-repeat center center fixed; ;
+	-webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+	margin: 0; 
 }
 
 * {
@@ -131,15 +134,266 @@ body {
 	cursor: pointer;
 }
 
+/* Modal for drink insertion */
+/* The Modal (background) */
+.modal {
+   /* Stay in place */
+  position: fixed;
+  margin-left: 650px;
+  margin-right: 10px;
+  height: 100%;
+  width: 70%;
+  z-index: 1; /* Sit on top */
+  overflow: auto; /* Enable scroll if needed */
+}
 
-/*   background-color: black;
-  opacity: 0.9;
-  min-width: 160px;
-  box-shadow: 0px 8px 16px 5px rgba(0,0,0,0.2);
-  z-index: 1;
-  border-radius: 8px; */
+.modal input[type=text], input[type=password] {
+  padding: 8px 30px;
+  margin: 10px 10px 10px 10px;
+  display: inline-block;
+  border: 2px solid #ccc;
+  box-sizing: border-box;
+  border-radius: 6px;
+}
 
 
+/* Modal Content/Box */
+.modal-content {
+  position: relative;
+  background-color:  #fefefefe;
+  margin: 3% auto 15% auto; /* 5% from the top, 15% from the bottom and centered */
+  /*border: 1px solid #888;*/
+  padding: 10px;
+  width: 30%; /* Could be more or less, depending on screen size */
+  border-radius: 6px;
+}
+
+/* Set a style for all buttons */
+.modal button {
+  position: center;
+  background-color:#009999;
+  width: 200px;
+  color: white;
+  padding: 10px 10px 10px 10px;
+  margin: 6px 35px;
+  border: none;
+  cursor: pointer; 
+  border-radius: 8px;
+}
+
+.modal button:hover {
+  opacity: 0.8;
+}
+
+.fa-all {
+	position: relative;
+	float: left;
+	margin-top: -38px;
+	margin-left: 15px;
+	font-size: 18px;
+	z-index: 2;
+}
 
 
+/***************login*****************/
+
+/* The Modal (background)*/ 
+.modal_form {
+ /* Hidden by default */
+  display: none;
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+  padding-top: 60px;
+}
+
+.modal_address_content {
+	display: none;
+	position: relative;
+ 	background-color:  #fefefefe;
+	margin: 3% auto 5%; /* 5% from the top, 15% from the bottom and centered */
+  	/*border: 1px solid #888;*/
+  	padding: 10px;
+  	width: 45%; /* Could be more or less, depending on screen size */
+  	border-radius: 6px;
+}
+
+.modal_drink_content {
+	display: none;
+	position: absolute;
+ 	background-color:  #fefefefe;
+	/*margin: 3% 5%;  5% from the top, 15% from the bottom and centered */
+  	/*border: 1px solid #888;*/
+  	padding: 10px;
+  	top: 100px;
+  	left: 390px;
+  	width: 42%; /* Could be more or less, depending on screen size */
+  	height: 530px;
+  	border-radius: 6px;
+}
+
+.final_btn {
+	position: absolute;
+	top: 450px;
+	left: 320px;
+	cursor: pointer;
+	height: 10%;
+	width: 200px;
+	color: white;
+	background-color: #009999;
+}
+/* Add Zoom Animation */
+.animate {
+  -webkit-animation: animatezoom 0.6s;
+  animation: animatezoom 0.6s
+}
+
+@-webkit-keyframes animatezoom {
+  from {-webkit-transform: scale(0)} 
+  to {-webkit-transform: scale(1)}
+}
+  
+@keyframes animatezoom {
+  from {transform: scale(0)} 
+  to {transform: scale(1)}
+}
+
+/********* test **************/
+
+.map {
+    margin-top: 10px;
+	margin-left: 10px;
+	width: 300px;
+	height: 380px;	
+}
+
+.num {
+	width: 100px;
+}
+.wrapper {
+  display: -ms-flexbox; /* IE10 */
+  display: flex;
+  -ms-flex-wrap: wrap; /* IE10 */
+  flex-wrap: wrap;
+  margin: 0 -10px;
+}
+
+.col-r {
+  -ms-flex: 60%; /* IE10 */
+  flex: 60%;
+  padding: 0 16px;
+}
+
+.col-n {
+  -ms-flex: 25%; /* IE10 */
+  flex: 25%;
+  padding: 0 16px;
+}
+
+.cancel_btn {
+	cursor: pointer;
+	margin-right: 1px;
+	border: none;
+}
+.continue_btn {
+	margin-top: 20px;
+	float: right;
+	margin-right: 20px;
+	cursor: pointer;
+	height: 10%;
+	width: 200px;
+	color: white;
+	background-color: #009999;
+}
+
+/****** settings **********/
+
+
+.settings-modal {
+    /* Stay in place */
+  position: fixed;
+  z-index: 1; /* Sit on top */
+  overflow: auto; /* Enable scroll if needed */
+}
+
+.settings-content {
+  position: relative;
+  background-color:  #fefefefe;
+  height: 350px;
+  width: 500px; /* Could be more or less, depending on screen size */
+  margin-left: 500px;
+  border-radius: 6px;
+}
+
+.settings-modal input[type=text], input[type=password] {
+  padding: 8px 30px;
+  margin: 10px 10px 10px 10px;
+  display: inline-block;
+  border: 2px solid #ccc;
+  box-sizing: border-box;
+  border-radius: 6px;
+}
+.fa-all-2 {
+	position: relative;
+	float: left;
+	margin-top: -38px;
+	margin-left: 100px;
+	font-size: 18px;
+	z-index: 2;
+}
+
+.cash_btn {
+	margin-top: 5%;
+	height: 10%;
+	width: 35%;
+	float: left;
+	cursor: pointer;
+	background-color: #800000;
+	padding: 10px 10px 10px 10px;
+	border-radius: 4px;
+	color: white;
+	border: none;
+}
+.cash_btn:hover {
+	opacity:0.9;
+}
+
+.save_btn {
+	margin-top: 10%;
+	height: 10%;
+	width: 35%;
+	float: right;
+	cursor: pointer;
+	background-color: #006699;
+	padding: 8px 8px 8px 8px;
+	border-radius: 4px;
+	color: black;
+	border: none;
+}
+
+.save_btn:hover {
+	opacity:0.9;
+}
+
+/****** advertisments *********/
+.adv_space {
+	margin-top: 60%;
+	margin-bottom: 80px;
+	margin-left: 80px;
+	overflow: auto;
+}
+.adv {
+	border-color: white;
+	border: 2px;
+	background-color: black;
+	width: 300px;
+	height: 300px;
+	opacity: 0.8;
+	border-radius: 4px;
+}
 

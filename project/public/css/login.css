@@ -63,11 +63,14 @@
 /*********************************************************************/
 
 body {
-
-	background: url(../img/cocktail3.jpg) no-repeat; 
-	background-size: cover;
-	margin: 0;
+	background: url(../img/cocktail3.jpg) no-repeat center center fixed; ;
+	-webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+	margin: 0; 
 }
+
 
 * {
   box-sizing: border-box;
@@ -241,26 +244,18 @@ span.psw {
   color: white;
 }
 
-.twitter {
-  background-color: #55ACEE;
-  color: white;
-}
-
-.google {
-  background-color: #dd4b39;
-  color: white;
-}
-
 .social_btn {
-  border-radius: 50%;
-  padding: 12px;
+  border-radius: 4px;
+  width: 150px;
+  padding: 15px;
   border: none;
-  margin: 5px 0;
+  margin-top: 10px;
+  margin-left: 200px;
   opacity: 0.85;
   display: inline-block;
-  font-size: 17px;
-  line-height: 20px;
-  text-decoration: none; /* remove underline from anchors */
+  line-height: 6px;
+  text-decoration: none;
+  color: white;
 }
 
 .social_btn:hover {
@@ -295,5 +290,22 @@ span.psw {
 .topnav .log-reg active {
   border: none;
   color: #b37700;
+}
+
+/* Space for advertisments */
+.adv_space {
+	margin-top: 60%;
+	margin-bottom: 80px;
+	margin-left: 80px;
+	overflow: auto;
+}
+.adv {
+	border-color: white;
+	border: 2px;
+	background-color: black;
+	width: 300px;
+	height: 300px;
+	opacity: 0.8;
+	border-radius: 4px;
 }
 
