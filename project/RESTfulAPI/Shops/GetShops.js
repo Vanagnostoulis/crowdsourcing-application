@@ -21,10 +21,10 @@ module.exports = function (app,con){
 		  			res.status(404).send( "404 - NOT FOUND");
 				else
 				{
-					var dict = 
+					var dict =
 					{
 						id: row[0].Store_Id,
-						name: row[0].Name, 
+						name: row[0].Name,
 						address: row[0].Street + " "+ row[0].Num + ", " + row[0].Postal_Code + ", " + row[0].Region,
 						lng: row[0].Longtitude,
 						lat: row[0].Latitude,
@@ -38,7 +38,7 @@ module.exports = function (app,con){
 	});
 
 	app.get("/observatory/api/shops", function (req, res) {
-		
+
 		var total, offset, queryArgs;
 		var flag= false;
 
@@ -53,14 +53,14 @@ module.exports = function (app,con){
 			var count = parseInt(20);
 		else if (req.query.count >= 1)
 			var count = parseInt(req.query.count);
-		else 
+		else
 			flag = true;
 
 		if (req.query.status == null)
 			var status = "ACTIVE";
 		else if (req.query.status == "ALL" || req.query.status == "WITHDRAWN" || req.query.status == "ACTIVE")
 			var status = req.query.status;
-		else 
+		else
 			flag = true;
 
 		if (req.query.sort == null)
@@ -74,7 +74,7 @@ module.exports = function (app,con){
 		if (flag)
 			{res.status(400).send("400 - Bad Request");}
 		else
-		{	// find value of total shops	
+		{	// find value of total shops
 			sql = " SELECT COUNT (Store_Id) AS totalCount FROM Store";
 		  	con.query(sql, function (err, rows) {
 		  	 	total = rows[0].totalCount;
@@ -88,16 +88,16 @@ module.exports = function (app,con){
 		  	else
 		  		queryArgs[0] = "Name";
 
-		  	if (status == "ACTIVE") 
+		  	if (status == "ACTIVE")
 		  		status ="(0)";
 		  	else if (status == "WITHDRAWN")
 		  		status ="(1)";
-			else 
+			else
 		  		status ="(0,1)";
 
 			sql = "Select * from Store, Store_Address where (Store.Store_Id BETWEEN " + start +" AND " + offset +
 				  ") AND (Store_Address.Store_Id BETWEEN " + start + " AND " + offset +
-				  ") AND (Store.Store_Id = Store_Address.Store_Id) AND Store.Withdrawn IN "+ status + 
+				  ") AND (Store.Store_Id = Store_Address.Store_Id) AND Store.Withdrawn IN "+ status +
 				  " ORDER BY Store." +queryArgs[0]+ " " + queryArgs[1] + ";";
 			console.log(sql);
 			con.query(sql, function (err, result) {
@@ -107,10 +107,11 @@ module.exports = function (app,con){
 				var i;
 				var arr =[];
 				var len =result.length;
-				for (i = 0; i < len; i++) { 
+				console.log(result);
+				for (i = 0; i < len; i++) {
 					arr.push({
 						id: result[i].Store_Id,
-						name: result[i].Name, 
+						name: result[i].Name,
 						address: result[i].Street + " "+ result[i].Num + ", " + result[i].Postal_Code + ", " + result[i].Region,
 						lng: result[i].Longtitude,
 						lat: result[i].Latitude,
