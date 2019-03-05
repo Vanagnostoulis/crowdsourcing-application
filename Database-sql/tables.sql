@@ -9,12 +9,15 @@ create table  Email_Domains (
 	primary key (Domain_Id)
 );
 
+create table Blacklist (
+ Token varchar(300) character set utf8 collate utf8_general_ci
+ );
 
 create table  Users (
 	Username	varchar(64) character set utf8 collate utf8_general_ci,
 	Password	varchar(64) ,
 	Points 		int unsigned default 0,	
-    
+    Admin		int(1) default 0,
     -- email
     Domain_Id 		int unsigned not null, 
     Local_Part		varchar(64) not null,						-- i.e. marios.cako
@@ -36,7 +39,7 @@ create table  Users_Locations (
 	-- address
 	Street		varchar(64) character set utf8 collate utf8_general_ci not null,
 	Num 		int unsigned ,
-	Postal_Code int unsigned,
+	Postal_Code     varchar(16),
 	Region 		varchar(30) character set utf8 collate utf8_general_ci not null, -- e.i Nea Ionia
 	
 	Time_Inserted datetime,
@@ -50,8 +53,8 @@ create table  Store (
 	Name 	varchar(100) character set utf8 collate utf8_general_ci,
 	
 	-- location
-	Longtitude 	real(7,5),
-	Latitude 	real(7,5),
+	Longtitude 	real(17,15),
+	Latitude 	real(17,15),
 	Phone_Num 	varchar(64) character set utf8 collate utf8_general_ci ,
     
     -- email
@@ -70,7 +73,7 @@ create table  Store_Address (
 	Store_Id	int unsigned not null,
 	Street 		varchar(64) character set utf8 collate utf8_general_ci not null,
 	Num 		int unsigned ,
-	Postal_Code int unsigned,
+	Postal_Code 	varchar(16),
 	Region 		varchar(64) character set utf8 collate utf8_general_ci not null, -- i.e. Nea Ionia
 	
 	primary key (Store_Id),
@@ -96,9 +99,10 @@ create table Drinks (
 	Drink_Id 	int unsigned auto_increment not null,
 	Category 	varchar(20) character set utf8 collate utf8_general_ci not null,
 	Description varchar(300) character set utf8 collate utf8_general_ci ,
+	Name varchar(300) character set utf8 collate utf8_general_ci not null,
 	Price 		real(6,2) not null,
 	Ml 			int(4),
-	Tag		    varchar(30),
+	Tag		varchar(30) character set utf8 collate utf8_general_ci,
 	Store_Id 	int unsigned not null,
 	Withdrawn 	int(1) default 0,
 	-- Views_Per_Day 	int unsigned not null default 0,
@@ -108,6 +112,17 @@ create table Drinks (
 	foreign key(Store_Id) references Store(Store_Id) 
 	on delete cascade
 	on update cascade
+);
+
+
+create table Drinks_Log(
+	Drink_Id	int unsigned not null,
+	Updated_Date date not null,
+	Price 		real(6,2) not null,
+	foreign key(Drink_Id) references Drinks(Drink_Id)
+	on delete cascade,
+	Insert_Id		int unsigned auto_increment not null,
+	primary key(Insert_Id)
 );
 
 create table Offers (
@@ -145,6 +160,10 @@ create table Company (
 	
 	primary key  (Domain_Id, Local_Part)
 );
+
+insert into Email_Domains(Domain_Name) values ('admin.com');
+insert into Users(Username, Password, Points, Admin, Local_Part, Domain_Id) values ('admin', 'admin', 0, 1, 'admin', (Select LAST_INSERT_ID()));
+
 
 
 

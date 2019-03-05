@@ -6,6 +6,6 @@ module.exports = {
   	"use_database"          :     "true",
   	"host"                  :     "localhost",
   	"username"              :     "root",
-  	"password"              :     "your-psw",
+  	"password"              :     "moon",
   	"database"              :     "project"
 }
