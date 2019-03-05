@@ -1,0 +1,31 @@
+{
+  "name": "project",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "async": "^2.6.2",
+    "bcrypt": "^3.0.4",
+    "body-parser": "^1.18.3",
+    "cookie-parser": "^1.4.4",
+    "ejs": "^2.6.1",
+    "express": "^4.16.4",
+    "express-session": "^1.15.6",
+    "fuzzball": "^1.2.0",
+    "jsonwebtoken": "^8.5.0",
+    "mysql": "^2.16.0",
+    "nodemailer": "^5.1.1",
+    "passport": "^0.4.0",
+    "passport-facebook": "^3.0.0",
+    "request": "^2.88.0",
+    "request-promise": "^4.2.4",
+    "save": "^2.3.3",
+    "socket.io": "^2.2.0"
+  }
+}
