@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" type="text/css" href="/css/details.css">
+<link rel="stylesheet" type="text/css" href="../public/css/details.css">
+<link href='http://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
+<meta name="viewport" content="initial-scale=1.0, width=device-width" />
+<script src="https://js.api.here.com/v3/3.0/mapsjs-core.js"
+type="text/javascript" charset="utf-8"></script>
+<script src="https://js.api.here.com/v3/3.0/mapsjs-service.js"
+type="text/javascript" charset="utf-8"></script>
+</head>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script></script>
+<body>
+<div class="topnav">
+	<a href="#login.html"> <img src="img/kava.png" style="width:120px; height:50px; padding: 0px 16px"></img> </a>
+		</a>
+</div>
+
+<ul id="myUL">
+   <li>  
+		<img src="img/whisky.jpg" style="float:left; width:150px; height:130px; padding: 8px 8px 15px"></img>
+        <p class="product"><%= category %> <%= tag %></p> 
+        <p class="description"><%= name %>.<br> <%= ml %> ml. <br><%= description %></p>
+        <p class="price"> <%= price %> €</p>
+		<div class="wrapper">
+			<div class="map" id="mapContainer"></div>
+			<div class="col-n">
+				<p class="elem"> <%= type %> <b><%= store_name %></b> <br>
+				<p class="elem"> <%= region %> , <%= street %> <%= num %> , Τ.Κ: <%= postal_code %></p>
+				<br><br><br><br><br><br>
+				<p class="elem">Τηλέφωνο επικοινωνίας:<%= phone %></p>
+			</div>
+         </div>	  
+ </li>
+</ul>
+
+
+<script>
+// Initialize the platform object:
+var platform = new H.service.Platform({
+	'app_id': 'qoxFJl1Vm1Boet7IWwE5',
+    'app_code': 'yCui6cYlQonbB6GDN01VFA',
+    'useHTTPS': true
+});
+
+ 
+// Retrieve the target element for the map:
+var targetElement = document.getElementById('mapContainer');
+
+// Get the default map types from the platform object:
+var defaultLayers = platform.createDefaultLayers();
+
+// Instantiate the map:
+var map = new H.Map(
+	document.getElementById('mapContainer'),
+	defaultLayers.normal.map,
+	{
+		zoom: 15,
+	  	center: { lat: "<%= lat %>", lng: "<%= lon %>" }
+	 });
+
+  
+// Create a marker for the start point:
+var startMarker = new H.map.Marker({
+	lat:"<%= lat %>",
+	lng: "<%= lon %>" 
+});
+
+map.addObjects([startMarker]);	
+	
+</script>
+
+<button type="button" onclick="history.back()" class="cancelbtn"><i class="fa fa-arrow-left"></i> Πίσω  </button>
+
+</body>
+
+</html>

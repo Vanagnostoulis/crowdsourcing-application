@@ -4,62 +4,216 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet" type="text/css" href="/css/user.css">
-<link rel="stylesheet" type="text/css" href="../public/css/user.css">
-<link href='http://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
+<meta name="viewport" content="initial-scale=1.0, width=device-width" />
+<script src="https://js.api.here.com/v3/3.0/mapsjs-core.js"
+type="text/javascript" charset="utf-8"></script>
+<script src="https://js.api.here.com/v3/3.0/mapsjs-service.js"
+type="text/javascript" charset="utf-8"></script>
 </head>
 
+<!-- Top navigation: logo, welcome message, profile image -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 <script></script>
 <body>
 <div class="topnav">
-	<a href='#login.html'> <img src="img/kava.png" style="width:120px; height:50px; padding: 0px 16px"></img> </a>
+	<a href='/'> <img src="./img/kava.png" style="width:120px; height:50px; padding: 0px 16px"></img> </a>
 		<a href='#' id='profileImage' onclick="document.getElementById('dropdown').style.display='block'">
 		</a>
 	<a id= "welcome" href="#" >
     </a>
 </div>
 
+<!-- Dropdown content after user clicks on profileImage. -->
 <div class="dropdown-content" id='dropdown'>
-	<button id='settings'>Ρυθμίσεις</button>
+	<form action='/' method="get">
+		<button id='initial'>Αρχική</button>
+	</form>
+	<form action='/settings' method="get">
+		<button id='settings'>Προφίλ</button>
+	</form>
 	<form action='/logout' method="get">   
 		<button id='logout_btn' >Αποσύνδεση</button>	
 	</form>
-	<button id='help'>Βοήθεια</button>
 </div>
 
+
+<!-- Javascript for username variable receiving from backend -->
 <script>
 $(document).ready(function(){
-  const username = "<%= username %>".charAt(0).toUpperCase() + "<%= username %>".substr(1).toLowerCase(); 
-  document.getElementById("welcome").innerHTML = "Καλωσόρισες, " + username +"!";
+  const username = "<%= username %>".charAt(0).toUpperCase() + "<%= username %>".substr(1).toLowerCase().split(" ")[0];
+  document.getElementById("welcome").innerHTML = "Καλωσόρισες, " + username +"!";	
   var profileImage = $('#profileImage').text(username.charAt(0));
 });
 </script>
-<p class='catch-phrase'> Never have i ever... </p>
-<div class="search-container">
-	<form action="/" method="post">
-		<button type="submit"><i class="fa fa-search"></i></button>
-    	<input type="text" placeholder="Αναζήτηση..." name="search" id="search-box"  onclick="document.getElementById('search-box').style.borderColor='#668cff';"> 	
-    </form>
+
+<div>
+	<p class='catch-phrase'> Never have i ever... </p>
+	<div class="search-container">
+		<form action="/search" method="post">
+			<button type="submit"><i class="fa fa-search"></i></button>
+			<input type="text" placeholder="Αναζήτηση..." name="search" id="search-box"  onclick="document.getElementById('search-box').style.borderColor='#668cff';"> 	
+		</form>
+	</div>
+	<!-- Insert address form --> 
+	<div id="insert_drink" class="modal"> 
+		<form class="modal-content" action="/insert_address_store" method="post">
+		  	<label for="header_login" ><p style="text-align:center; font-size: 17px;"><b style="border-bottom: 3px solid #009999;"> Εισαγωγή Ποτού</b></p></label>
+		  	<input type="text" id="address_store" placeholder="Διεύθυνση Μαγαζιού" style="font-family:Arial, FontAwesome" onclick="document.getElementById('address_store').style.borderColor='#668cff';" name="address" required>
+		  	<i class="fa fa-address-card fa-all"></i>	
+		  	<button type="submit" class="insertbtn" style="font-family:Arial, FontAwesome;"><b>Εισαγωγή</b></button>
+	  	</form>
+	</div>	
 </div>
 
-<script>
-var search = document.getElementById("search-box");
-var logout = document.getElementById("profileImage");
 
+<!-- Confirm address form -->
+<div class="modal_form animate" id='form'>
+	<form class="the_form" action='/confirm' method='post'>	
+		<div class="modal_drink_content" id='drink_form'>
+			<div class="wrapper">
+			 	<label for="header_address" ><p style="font-size: 17px;"><b>&nbsp;&nbsp;Στοιχεία ποτού &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</b></p></label>
+			 	<button type="button" class="cancel_btn" onclick="document.getElementById('form').style.display='none'"><b>X</b></button>
+			 </div>
+			 <label for="address" ><p style="font-size: 15px;">Παρακαλούμε εισάγετε τα στοιχεία του ποτού.</p></label>
+			 <div class="wrapper">
+				 <div class="col-n">	  
+					<label for="type"><p style="font_size: 2px;"><b>Είδος</b></p></label>  
+					<input type="text" name="type" placeholder="πχ. Ουίσκυ" required>
+			    	<label for="mark"><p style="font_size: 2px;"><b>Μάρκα</b></p></label>  
+					<input type="text" name="mark" placeholder="πχ. Jack Daniels" required>  
+			    	<label for="type"><p style="font_size: 2px;"><b>Περιγραφή</b></p></label>  
+					<input type="text" name="alcohol" placeholder="πχ. 6% w/v">
+			    	<label for="type"><p style="font_size: 2px;"><b>Τιμή</b></p></label>  
+					<input type="text" name="price" placeholder="σε ευρώ" required>			
+			     </div>
+			     <div class="col-n">
+			     	<label for="type"><p style="font_size: 2px;"><b>Ποσότητα</b></p></label>  
+					<input type="text" name="ml" placeholder="πχ. 500ml">
+					<label for="type"><p style="font_size: 2px;"><b>Ετικέτα</b></p></label>  
+					<input type="text" name="tag" placeholder="πχ. Scotch">
+			     	<label for="type"><p style="font_size: 2px;"><b>Κατηγορία μαγαζιού</b></p></label>
+			     	<select name="store_type">
+						<option value="Liquor Store">Κάβα</option>
+						<option value="Super Market">Super market</option>
+					  	<option value="Kiosk">Περίπτερο</option>
+					</select>
+			     	<label for="type"><p style="font_size: 2px;"><b>Όνομα μαγαζιού</b></p></label>
+			     	<input type="text" name="store_name">
+			     	<button type="submit" class="final_btn"><b>Υποβολή</b></button>
+			     </div>	
+			</div>
+		</div>		
+		<div class="modal_address_content" id='address_form'>
+			<div class="wrapper">
+    	 		<label for="header_address" ><p style="font-size: 17px;"><b>&nbsp;&nbsp;Επιβεβαίωση Διεύθυνσης&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    	  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    	  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</b></p></label>
+    	 		<button type="button" class="cancel_btn" onclick="document.getElementById('form').style.display='none'"><b>X</b></button>
+    	 	</div>
+    	 	<label for="address" ><p style="font-size: 15px;">Παρακαλούμε επιβεβαιώστε τη διεύθυνση.</p></label>
+    	 	<div class="wrapper">
+				<div class="map" id="mapContainer"></div>
+				<div class="col-n">	  
+			    	<label for="state"><p style="font_size: 2px;"><b>Νομός</b></p></label>  
+    	    		<input type="text" name="state" value="<%= state %>">
+    	    		<label for="region"><p style="font_size: 2px;"><b>Περιοχή</b></p></label>  
+    	    		<input type="text" name="region" value="<%= region %>">
+    	    		<label for="street"><p style="font_size: 2px;"><b>Οδός</b></p></label>  
+    	    		<input type="text" name="street" value="<%= street %>">
+    	    		<label for="num"><p style="font_size: 2px;"><b>Αριθμός&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Τ.Κ.</b></p></label>  
+    	    		<div class="wrapper">
+    	    			<div class="col-n">
+							<input class="num" type="text" name="num" value="<%= num %>">
+							<input class="num" type="text" name="pcode" value="<%= pcode %>">	
+						</div>
+			    	</div>
+			    	<button type="button" class="continue_btn" id="continue" onclick="document.getElementById('address_form').style.display='none'; document.getElementById('drink_form').style.display='block'"><b>Συνέχεια</b></button>   
+    	    	</div>	
+		 	</div>
+		</div>
+	</form>
+</div>
+
+<!-- space for advertisments -->
+<div class="adv_space">
+	<div class="adv" id="space1">
+		<p style="color:white; text-align:center;"><b>Διαφήμιση</b></p>
+	</div>
+	<div class="adv" id="space2">
+		<p style="color:white; text-align:center;"><b>Διαφήμιση</b></p>
+	</div>
+	<div class="adv" id="space3">
+		<p style="color:white; text-align:center;"><b>Διαφήμιση</b></p>
+	</div>
+</div>
+
+<% if((lon !== null) && (lat !== null)){
+	%> <script> 
+		document.getElementById('form').style.display='block'; 
+		document.getElementById('address_form').style.display='block';
+	</script> <%
+} %>
+
+<script>
+// Initialize the platform object:
+var platform = new H.service.Platform({
+	'app_id': 'qoxFJl1Vm1Boet7IWwE5',
+    'app_code': 'yCui6cYlQonbB6GDN01VFA',
+    'useHTTPS': true
+});
+
+ 
+// Retrieve the target element for the map:
+var targetElement = document.getElementById('mapContainer');
+
+// Get the default map types from the platform object:
+var defaultLayers = platform.createDefaultLayers();
+
+// Instantiate the map:
+var map = new H.Map(
+	document.getElementById('mapContainer'),
+	defaultLayers.normal.map,
+	{
+		zoom: 15,
+	  	center: { lat: "<%= lat %>", lng: "<%= lon %>" }
+	 });
+
+  
+// Create a marker for the start point:
+var startMarker = new H.map.Marker({
+	lat:"<%= lat %>",
+	lng: "<%= lon %>" 
+});
+
+map.addObjects([startMarker]);	
+	
+</script>
+
+<script>
+var search = document.getElementById("search-box")
+var logout = document.getElementById("profileImage");
+var insert = document.getElementById("insert_drink");
 
 window.onclick = function(event) {
+
 	if (event.target != search) {
        document.getElementById('search-box').style.borderColor='#888' 
     }
     
-    if ((event.target != logout)) {
+    if (event.target != logout) {
         document.getElementById('dropdown').style.display = "none";
     }
+    
+    if (event.target == insert_drink) {
+    	document.getElementById('address_store').style.borderColor='#a4c1c1';
+    }
+    
+    
 }
-
 </script>  
-
 </body>
-
 </html>
 

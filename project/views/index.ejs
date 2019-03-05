@@ -4,12 +4,12 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet" type="text/css" href="/css/login.css">
-<link href='http://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
 </head>
 
 <body>
 <div class="topnav">
-	<a href='#login.html'> <img src="img/kava.png" style="width:120px; height:50px; padding: 0px 16px"></img> </a>
+	<a href='/'> <img src="img/kava.png" style="width:120px; height:50px; padding: 0px 16px"></img> </a>
 	<a class="log-reg" href="#" onclick="document.getElementById('register').style.display='block'">
     Εγγραφή
     </a>
@@ -26,42 +26,61 @@
 </div>
   
 <div id="login" class="modal"> 
-  <form class="modal-content animate" action="/login" method="post">
-    <div class="container">
-      <label for="header_login" ><p style="text-align:center; font-size: 17px;"><b style="border-bottom: 3px solid #009999;"> Είσοδος </b></p></label>
-      <input type="text" id="user" placeholder="Όνομα Χρήστη ή Email" style="font-family:Arial, FontAwesome" onclick="document.getElementById('user').style.borderColor='#668cff';" name="uname" required>
-      <i class="fa fa-user fa-all"></i>
-      <input type="password" id="psw" placeholder="Συνθηματικό" style="font-family:Arial, FontAwesome" onclick="document.getElementById('psw').style.borderColor='#668cff';" name="psw" required>  
-      <i class="fa fa-lock fa-all"></i>
-      <button type="submit" class="loginbtn" style="font-family:Arial, FontAwesome"><b>Είσοδος</b></button>
-      	<div class="col"> 
-			<a href="/auth/facebook" class="fb social_btn">
-    			<i class="fa fa-facebook fa-fw"></i> 
-        	</a>
-        	<a href="#" class="twitter social_btn">
-          		<i class="fa fa-twitter fa-fw"></i> 
-        	</a>
-        	<a href="#" class="google social_btn">
-        		<i class="fa fa-google fa-fw"></i> 
-        	</a>
-		</div>
-    	<div>
-      		<label>
-        		<input type="checkbox" checked="checked" name="remember" style="font-family:Arial, FontAwesome"> Να με θυμάσαι
-      		</label>
-    	</div>
+	<form class="modal-content animate" action="/login" method="post">
+    	<div class="container">
+		  	<label for="header_login" ><p style="text-align:center; font-size: 17px;"><b style="border-bottom: 3px solid #009999;"> Είσοδος </b></p></label>
+		  	<input type="text" id="user" placeholder="Όνομα Χρήστη ή Email" style="font-family:Arial, FontAwesome" onclick="document.getElementById('user').style.borderColor='#668cff';" name="uname" required>
+	 		<i class="fa fa-user fa-all"></i>
+		  	<input type="password" id="psw" placeholder="Συνθηματικό" style="font-family:Arial, FontAwesome" onclick="document.getElementById('psw').style.borderColor='#668cff';" name="psw" required>  
+		  	<i class="fa fa-lock fa-all"></i>
+		  	<button type="submit" class="loginbtn" style="font-family:Arial, FontAwesome"><b>Είσοδος</b></button>
+		  	<a href="/auth/facebook" class="fb social_btn" style="font-family:Arial; font-size:15px;"><b>Login with</b><br><br><b>facebook</b>
+		  	</a>
+		  	<label>
+		   		<input type="checkbox" checked="checked" name="remember" style="font-family:Arial, FontAwesome"> Να με θυμάσαι
+		  	</label>
     	<% if(authentication_failed !== null){ %>
   			<p class="error"><b><%= authentication_failed %></b></p>
-	<% } %>
-    </div>
+		<% } %>
+    	</div>
 	
-    <div class="container" style="background-color:#e1e1e1">
-      <button type="button" onclick="document.getElementById('login').style.display='none'" class="cancelbtn"><i class="fa fa-arrow-left"></i>  Πίσω </button>
-      <span class="psw"><a href="#">Ξέχασες τον κωδικό;</a></span>
-    </div>
+    	<div class="container" style="background-color:#e1e1e1">
+      		<button type="button" onclick="document.getElementById('login').style.display='none'" class="cancelbtn"><i class="fa fa-arrow-left"></i>  Πίσω </button>
+      		<span class="psw"><a href="#" onclick="forgot_psw(document.getElementById('user').value);">Ξέχασες τον κωδικό;</a></span>
+    	</div>
   </form>
 </div>
 
+<script>
+function post(path, params, method) {
+    method = method || "post"; // Set method to post by default if not specified.
+
+    // The rest of this code assumes you are not using a library.
+    // It can be made less wordy if you use one.
+    var form = document.createElement("form");
+    form.setAttribute("method", method);
+    form.setAttribute("action", path);
+
+    for(var key in params) {
+        if(params.hasOwnProperty(key)) {
+            var hiddenField = document.createElement("input");
+            hiddenField.setAttribute("type", "hidden");
+            hiddenField.setAttribute("name", key);
+            hiddenField.setAttribute("value", params[key]);
+
+            form.appendChild(hiddenField);
+        }
+    }
+
+    document.body.appendChild(form);
+    form.submit();
+}
+
+function forgot_psw(a) {
+	alert(a);
+	post('/middleforgot');
+}
+</script>
 
 <div id="register" class="modal"> 
   <form class="modal-content animate" action="/register" method="post">
@@ -88,17 +107,7 @@
 		<% } %>
      	<p style="font-size:13px;">Πατώντας εγγραφή αποδέχεσαι τους <a href="#">όρους χρήσης</a>.</p> 
       	<button type="submit" class="loginbtn"><b>Εγγραφή</b></button>
-      	<div class="col"> 
-			<a href="/reg/facebook" class="fb social_btn">
-    			<i class="fa fa-facebook fa-fw"></i> 
-        	</a>
-        	<a href="#" class="twitter social_btn">
-          		<i class="fa fa-twitter fa-fw"></i> 
-        	</a>
-        	<a href="#" class="google social_btn">
-        		<i class="fa fa-google fa-fw"></i> 
-        	</a>
-		</div>
+		<a href="/reg/facebook" class="fb social_btn" style="font-family:Arial; font-size:15px;"><b>Continue with</b><br><br><b>facebook</b></a>
 	</div>
 	<div class="container" style="background-color:#f1f1f1">
     	<button type="button" onclick="document.getElementById('register').style.display='none'" class="cancelbtn"><i class="fa fa-arrow-left"></i> Πίσω</button>
@@ -106,6 +115,18 @@
   </form>
 </div>
 
+<!-- space for advertisments -->
+<div class="adv_space">
+	<div class="adv" id="space1">
+		<p style="color:white; text-align:center;"><b>Διαφήμιση</b></p>
+	</div>
+	<div class="adv" id="space2">
+		<p style="color:white; text-align:center;"><b>Διαφήμιση</b></p>
+	</div>
+	<div class="adv" id="space3">
+		<p style="color:white; text-align:center;"><b>Διαφήμιση</b></p>
+	</div>
+</div>
 
 <% if(error_user_exist !== null){
 	%> <script> 

@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" type="text/css" href="/css/results.css">
+<link rel="stylesheet" type="text/css" href="../public/css/results.css">
+<link href="http://fonts.googleapis.com/css?family=Pacifico" rel="stylesheet" type="text/css">
+
+</head>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script></script>
+<body>
+<div class="topnav">
+	<a href=""> <img src="img/kava.png" style="width:120px; height:50px; padding: 0px 16px"></img> </a>
+		<a href="#" id="profileImage" onclick="document.getElementById('dropdown').style.display='block'">
+		</a>
+</div>
+
+<div class="dropdown-content" id="dropdown">
+	<button id="settings">Ρυθμίσεις</button>
+	<form action="/logout" method="get">   
+		<button id="logout_btn" >Αποσύνδεση</button>	
+	</form>
+	<button id="help">Βοήθεια</button>
+</div>
+
+
+<div class="search-container">
+	<form action="/" method="post">
+		<button type="submit"><i class="fa fa-search"></i></button>
+    	<input type="text" placeholder="Αναζήτηση..." name="search" id="search-box"  onclick="document.getElementById('search-box').style.borderColor='#668cff';"> 	
+    </form>
+</div>
+<input type="hidden" id = "myhid">
+<input type="hidden" id = "myhidcnt">
+<ul id="myUL">
+
+  <form action="/details" method="get" id="details">
+				<li onclick="fundetails(0)">  
+		 		<a href="#"><img src="img/whisky.jpg" style="float:left; width:150px; height:130px; padding: 8px 8px 15px"></img>
+                  <p class="product">whisky scotch</p> 
+                  <p class="description">Johnnie Walker Explorer’s Club Collection ”The Spice Road”.</p>
+                  <p class="price"> 115.00 €</p></a>
+ </li>
+				<li onclick="fun_details('1')"> <a href="#">whisky Price:38.54 €</a></li>
+
+  <li><a href="#">whisky Price:82.97 €</a></li>
+  <li><a href="#">whisky Price:420.63 €</a></li>
+  <li id="cell_5"><a href="#" >whisky Price:47.53 €</li></form>
+</ul>
+<form action="/search-results" method="get" id="more">
+	<button type="button" onclick="funresults()" class="more_details"> Περισσότερα  </button>
+</form>
+<script>
+$(document).ready(function(){
+  const username = "<%= username %>".charAt(0).toUpperCase() + "<%= username %>".substr(1).toLowerCase(); 
+  var profileImage = $("#profileImage").text(username.charAt(0)); 
+  var result_json = '<%= res %>';
+  var result = JSON.parse(result_json);
+  document.getElementById("myhid").value = result;
+  document.getElementById("smth").innerHTML = result_json;
+  var count =  10;
+  document.getElementById("myhidcnt").value = count;
+});
+function fundetails(a) {
+	result = document.getElementById("myhid").value;
+	post("./details",{res : result[0]})
+}
+function funresults(){
+	post("./search-results",{res : result, cnt :count})
+}
+function post(path, params, method) {
+    method = method || "post"; // Set method to post by default if not specified.
+
+    // The rest of this code assumes you are not using a library.
+    // It can be made less wordy if you use one.
+    var form = document.createElement("form");
+    form.setAttribute("method", method);
+    form.setAttribute("action", path);
+
+    for(var key in params) {
+        if(params.hasOwnProperty(key)) {
+            var hiddenField = document.createElement("input");
+            hiddenField.setAttribute("type", "hidden");
+            hiddenField.setAttribute("name", key);
+            hiddenField.setAttribute("value", params[key]);
+
+            form.appendChild(hiddenField);
+        }
+    }
+
+    document.body.appendChild(form);
+    form.submit();
+}
+</script>
+<p id = "smth"> </p>
+<script>
+function myFunction() {
+    var ul, li, a, i, txtValue;
+    ul = document.getElementById("myUL");
+    li = ul.getElementsByTagName("li");
+    for (i = 0; i < li.length; i++) {
+        a = li[i].getElementsByTagName("a")[0];
+        txtValue = a.textContent || a.innerText;
+        if (txtValue.toUpperCase().indexOf(filter) > -1) {
+            li[i].style.display = "";
+        } else {
+            li[i].style.display = "none";
+        }
+    }
+}
+</script>
+<script>
+var logout = document.getElementById("profileImage");
+var login = document.getElementById("login");
+var register = document.getElementById("register");
+var search = document.getElementById("search-box");
+
+window.onclick = function(event) {
+	if (event.target != search) {
+       document.getElementById("search-box").style.borderColor="#888" 
+    }
+    
+    if ((event.target != logout)) {
+        document.getElementById("dropdown").style.display = "none";
+    }
+    if ((event.target == login) || (event.target == register)) {
+        login.style.display = "none";
+        register.style.display = "none";
+    }
+    
+    if (event.target != search) {
+       document.getElementById("search-box").style.borderColor="#888"
+    }
+    /* Login fields */
+    if (event.target != document.getElementById("user")) {
+    	document.getElementById("user").style.borderColor="#ccc"
+    }
+    if (event.target != document.getElementById("psw")) {
+    	document.getElementById("psw").style.borderColor="#ccc"
+    }
+    
+    var error_user_exist = "<%= error_user_exist %>"
+	
+    /* Signup fields */
+    if (event.target != document.getElementById("email-reg")) {
+    	if(error_user_exist == "") 
+    		document.getElementById('email-reg').style.borderColor="#ccc"
+    	else /* tried to register with an existing acount */
+    		document.getElementById('email-reg').style.borderColor="#b30000"
+    }
+    var pd_error = "<%= password_mismatch %>"
+    if (event.target != document.getElementById("pass-reg")) {
+    	if(pd_error == "")
+    		document.getElementById("pass-reg").style.borderColor="#ccc"
+    	else
+    		document.getElementById('pass-reg').style.borderColor="#b30000"
+    }
+    if (event.target != document.getElementById("repass-reg")) {
+    	if(pd_error == "")
+    		document.getElementById('repass-reg').style.borderColor='#ccc'
+    	else
+    		document.getElementById('repass-reg').style.borderColor='#b30000'
+    }
+    if (event.target != document.getElementById("user-reg")) {
+    	document.getElementById('user-reg').style.borderColor='#ccc'
+    }
+}
+
+</script>  
+
+<p class="catch-phrase"> Αποτελέσματα Αναζήτησης: </p>
+<button type="button" onclick="history.back()" class="cancelbtn"><i class="fa fa-arrow-left"></i> Πίσω  </button>
+
+
+</body>
+
+</html>

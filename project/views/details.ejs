@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" type="text/css" href="/css/details.css">
+<link rel="stylesheet" type="text/css" href="../public/css/details.css">
+<link href='http://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
+<meta name="viewport" content="initial-scale=1.0, width=device-width" />
+<script src="https://js.api.here.com/v3/3.0/mapsjs-core.js"
+type="text/javascript" charset="utf-8"></script>
+<script src="https://js.api.here.com/v3/3.0/mapsjs-service.js"
+type="text/javascript" charset="utf-8"></script>
+</head>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script></script>
+<body>
+<div class="topnav">
+	<a href="/"> <img src="img/kava.png" style="width:120px; height:50px; padding: 0px 16px"></img> </a>
+		<a href="#" id="profileImage" onclick="document.getElementById('dropdown').style.display='block'">
+		</a>
+</div>
+
+<div class="dropdown-content" id="dropdown">
+	<button id="settings">Ρυθμίσεις</button>
+	<form action="/logout" method="get">   
+		<button id="logout_btn" >Αποσύνδεση</button>	
+	</form>
+	<button id="help">Βοήθεια</button>
+</div>
+<ul id="myUL">
+   <li>  
+	<img src="img/whisky.jpg" style="float:left; width:150px; height:130px; padding: 8px 8px 15px"></img>
+    <p class="product"><%= category %> <%= tag %></p> 
+    <p class="description"><%= name %>.<br> <%= ml %> ml. <br><%= description %></p>
+    <p class="price"> <%= price %> €</p>
+	<div class="wrapper">
+		<div class="map" id="mapContainer"></div>
+		<div class="col-n">
+			<p class="elem"> <%= category %> <b><%= name %></b> <br>
+			<p class="elem"> <%= region %> , <%= street %> <%= num %> , Τ.Κ: <%= postal_code %></p>
+			<br><br><br><br><br>
+			<p class="elem">Τηλέφωνο επικοινωνίας:<%= phone %></p>	
+			<br><br>
+			<a href='#' class="update_btn" onclick="document.getElementById('form').style.display='block'; document.getElementById('drink_form').style.display='block'">Αλλαγή στοιχείων</a>
+		</div>
+     </div>	  
+ </li>
+</ul>
+
+
+
+<!--Update drinks form -->
+<div class="modal_form animate" id='form'>
+	<form class="the_form" action='/update' method='post'>	
+		<div class="modal_drink_content" id='drink_form'>
+			<div class="wrapper2">
+			 	<label for="header_address" ><p style="font-size: 17px;"><b>&nbsp;&nbsp;Στοιχεία ποτού &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</b></p></label>
+			 	<button type="button" class="cancel_btn" onclick="document.getElementById('form').style.display='none'"><b>X</b></button>
+			 </div>
+			 <label for="address" ><p style="font-size: 15px;">Παρακαλούμε εισάγετε τα στοιχεία του ποτού.</p></label>
+			 <div class="wrapper2">
+				 <div class="col2-n">	
+				 	<input type="text" name="drink_id" value="5" style="display:none;">  
+			    	<label for="type"><p style="font_size: 2px;"><b>Περιγραφή</b></p></label>  
+					<input type="text" name="description" value="<%= description %>">
+			    	<label for="type"><p style="font_size: 2px;"><b>Τιμή</b></p></label>  
+					<input type="text" name="price" placeholder="<%= price %>" required>			
+			     </div>
+			     <div class="col2-n">
+			     	<button type="submit" class="final_btn"><b>Υποβολή</b></button>
+			     </div>	
+			</div>
+		</div>		
+	</form>
+</div>
+
+<script>
+$(document).ready(function(){
+  const username = "<%= username %>".charAt(0).toUpperCase() + "<%= username %>".substr(1).toLowerCase(); 
+  var profileImage = $("#profileImage").text(username.charAt(0)); 
+});
+</script>
+
+<script>
+// Initialize the platform object:
+var platform = new H.service.Platform({
+	'app_id': 'qoxFJl1Vm1Boet7IWwE5',
+    'app_code': 'yCui6cYlQonbB6GDN01VFA',
+    'useHTTPS': true
+});
+
+ 
+// Retrieve the target element for the map:
+var targetElement = document.getElementById('mapContainer');
+
+// Get the default map types from the platform object:
+var defaultLayers = platform.createDefaultLayers();
+
+// Instantiate the map:
+var map = new H.Map(
+	document.getElementById('mapContainer'),
+	defaultLayers.normal.map,
+	{
+		zoom: 15,
+	  	center: { lat: "<%= lat %>", lng: "<%= lon %>" }
+	 });
+
+  
+// Create a marker for the start point:
+var startMarker = new H.map.Marker({
+	lat:"<%= lat %>",
+	lng: "<%= lon %>" 
+});
+
+map.addObjects([startMarker]);	
+	
+</script>
+<script>
+var logout = document.getElementById("profileImage");
+
+
+window.onclick = function(event) {
+    
+    if ((event.target != logout)) {
+        document.getElementById("dropdown").style.display = "none";
+    }
+}
+
+</script> 
+<button type="button" onclick="history.back()" class="cancelbtn"><i class="fa fa-arrow-left"></i> Πίσω  </button>
+
+</body>
+
+</html>

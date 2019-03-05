@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" type="text/css" href="/css/user.css">
+<link href='https://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
+<meta name="viewport" content="initial-scale=1.0, width=device-width" />
+<script src="https://js.api.here.com/v3/3.0/mapsjs-core.js"
+type="text/javascript" charset="utf-8"></script>
+<script src="https://js.api.here.com/v3/3.0/mapsjs-service.js"
+type="text/javascript" charset="utf-8"></script>
+</head>
+
+<!-- Top navigation: logo, welcome message, profile image -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script></script>
+<body>
+<div class="topnav">
+	<a href='#login.html'> <img src="./img/kava.png" style="width:120px; height:50px; padding: 0px 16px"></img> </a>
+		<a href='#' id='profileImage' onclick="document.getElementById('dropdown').style.display='block'">
+		</a>
+	<a id= "welcome" href="#" >
+    </a>
+</div>
+
+<!-- Dropdown content after user clicks on profileImage. -->
+<div class="dropdown-content" id='dropdown'>
+	<form action='/' method="get">
+		<button id='initial'>Αρχική</button>
+	</form>
+	<form action='/settings' method="get">
+		<button id='settings'>Προφίλ</button>
+	</form>
+	<form action='/logout' method="get">   
+		<button id='logout_btn' >Αποσύνδεση</button>	
+	</form>
+</div>
+
+
+<p class='catch-phrase'> Never have i ever... </p>
+
+
+<!-- extension page -->
+<form class="settings-content" id="settings" action="/save" method="post">
+	<div class="settings-container" style="background-color:#c1d7d7; height:15%; border-radius:4px;">
+		<label for="header_login" ><p style="text-align:center; position:absolute; left:120px; font-size: 17px; top:10px;"><b>Ρυθμίσεις Λογαριασμού</b></p></label>
+		<i class="fa fa-cogs fa-all" style="position:absolute; left:10px; top:50px; font-size: 20px;"></i>
+	</div>
+	<div class="col-n">
+		<label for="username" ><p style="margin-top:45px; font-size: 15px;"><b>Όνομα Χρήστη:</b></p></label>
+		<i class="fa fa-user fa-all" style="margin-left:0px; margin-top:5px;"></i>
+		<input type="text" id="user-reg" value="<%= username %>" style="font-family:Arial, FontAwesome" onclick="document.getElementById('user-reg').style.borderColor='#668cff';" name="reg_uname" required> 
+		<div class="points" id="points" style="margin-top:50px; color:#006699; font-size: 15px;"></div>
+		<button type="button" class="cash_btn" style="font-family:Arial, FontAwesome">Εξαργύρωσε τώρα</button>
+		<button type="submit" class="save_btn" style="font-family:Arial, FontAwesome">Αποθήκευση αλλαγών</button>
+	</div>
+</form>
+	
+
+
+<!-- Javascript for username variable receiving from backend -->
+<script>
+$(document).ready(function(){
+  const username = "<%= username %>".charAt(0).toUpperCase() + "<%= username %>".substr(1).toLowerCase().split(" ")[0]; 
+  const points = "<%= points %>";
+  document.getElementById("welcome").innerHTML = "Γειά σου, " + username +"!";
+  document.getElementById("points").innerHTML = "<b>Έχεις διαθέσιμους " + points +" πόντους προς εξαργύρωση!</b>";	
+  var profileImage = $('#profileImage').text(username.charAt(0));
+});
+</script>
+
+<script>
+var logout = document.getElementById("profileImage");
+
+window.onclick = function(event) {
+	 if (event.target != document.getElementById("user-reg")) {
+    	document.getElementById('user-reg').style.borderColor='#ccc'
+    }   
+    if (event.target != logout) {
+        document.getElementById('dropdown').style.display = "none";
+    }
+    
+}
+</script>  
+</body>
+</html>
+
