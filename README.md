@@ -1,17 +1,15 @@
-Team Name: Hackuna Matata
-
 Course: Softwate Engineering
 
 Academic Year: 2018-2019
 
 Members:
 
-• Αναγνωστούλης Βασίλειος 03114790 v.anagn@yahoo.com
+• Αναγνωστούλης Βασίλειος  v.anagn@yahoo.com
 
-• Βαλή Ελευθερία Άννα 03114032 eleanna_1996@yahoo.com
+• Βαλή Ελευθερία Άννα  eleanna_1996@yahoo.com
 
-• Κορομηλάς Παναγιώτης 03114830 pa.koromilas@gmail.com
+• Κορομηλάς Παναγιώτης pa.koromilas@gmail.com
 
-• Παναγοπούλου Άννα 03114130 pan.anna.1996@gmail.com
+• Παναγοπούλου Άννα pan.anna.1996@gmail.com
 
-• Τσάκο Μαριούς 03114122 marios.cako@gmail.com
+• Τσάκο Μαριούς marios.cako@gmail.com
